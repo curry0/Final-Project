@@ -1,8 +1,7 @@
 namespace API.Entities
 {
-    public class AppUser
+    public class AppUser : BaseEntity
     {
-        public int Id { get; set; }
         public string UserName { get; set; }
     }
 }
