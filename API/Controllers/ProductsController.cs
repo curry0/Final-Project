@@ -1,30 +1,34 @@
-using API.Data;
+using API.DisplayModels;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
     public class ProductsController : BaseApiController
     {
         private readonly IProductRepository _productRepo;
-        public ProductsController(IProductRepository productRepo)
+        private readonly IMapper _mapper;
+        public ProductsController(IProductRepository productRepo, IMapper mapper)
         {
+            _mapper = mapper;
             _productRepo = productRepo;
             
         }
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<ProductDisplayModel>>> GetProducts()
         {
             var products = await _productRepo.GetProductsAsync();
-            return Ok(products);
+            return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDisplayModel>>(products));
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductDisplayModel>> GetProduct(int id)
         {
-            return await _productRepo.GetProductByIdAsync(id);
+            var product = await _productRepo.GetProductByIdAsync(id);
+
+            return _mapper.Map<Product, ProductDisplayModel>(product);
         }
 
         [HttpGet("brands")]
