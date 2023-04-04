@@ -1,5 +1,6 @@
 using API.DisplayModels;
 using API.Entities;
+using API.Errors;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,8 @@ namespace API.Controllers
         public async Task<ActionResult<ProductDisplayModel>> GetProduct(int id)
         {
             var product = await _productRepo.GetProductByIdAsync(id);
+
+            if (product == null) return NotFound(new ApiResponse(404));
 
             return _mapper.Map<Product, ProductDisplayModel>(product);
         }
