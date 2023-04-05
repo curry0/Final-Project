@@ -1,6 +1,8 @@
 using API.DisplayModels;
 using API.Entities;
 using API.Errors;
+using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -18,9 +20,12 @@ namespace API.Controllers
             
         }
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductDisplayModel>>> GetProducts()
+        public async Task<ActionResult<PagedList<ProductDisplayModel>>> GetProducts([FromQuery]ProductParams productParams)
         {
-            var products = await _productRepo.GetProductsAsync();
+            var products = await _productRepo.GetProductsAsync(productParams);
+
+            Response.AddPaginationHeader(new PaginationHeader(products.CurrentPage, products.PageSize, products.TotalCount, products.TotalPages));
+            
             return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDisplayModel>>(products));
         }
 

@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,12 +26,27 @@ namespace API.Data
                     .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductsAsync()
+        public async Task<PagedList<Product>> GetProductsAsync(ProductParams productParams)
         {
-            return await _context.Products
+            var query =_context.Products
                     .Include(p => p.ProductType)
-                    .Include(p => p.ProductBrand)
-                    .ToListAsync();
+                    .Include(p => p.ProductBrand).AsQueryable();
+            
+            if (productParams.BrandId != 0)
+                query = query.Where(x => x.ProductBrandId == productParams.BrandId);
+            if (productParams.TypeId != 0)
+                query = query.Where(x => x.ProductTypeId == productParams.TypeId);
+            if(!string.IsNullOrEmpty(productParams.Search))
+                query = query.Where(x => x.Name.ToLower().Contains(productParams.Search));
+
+            query = productParams.Sort switch
+            {
+                "priceAsc" => query.OrderBy(x => x.Price),
+                "priceDesc" => query.OrderByDescending(x => x.Price),
+                _ => query.OrderBy(x => x.Name)
+            };
+            
+            return await PagedList<Product>.CreateAsync(query, productParams.PageNumber, productParams.PageSize);
         }
 
         public async Task<IReadOnlyList<ProductType>> GetProductTypesAsync()
