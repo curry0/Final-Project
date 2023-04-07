@@ -1,6 +1,11 @@
-export interface Pagination<T> {
-  pageIndex: number;
-  pageNumber: number;
-  count: number;
-  data: T;
+export interface Pagination {
+    currentPage: number;
+    itemsPerPage: number;
+    totalItems: number;
+    totalPages: number;
+}
+
+export class PaginatedResult<T> {
+    result?: T
+    pagination?: Pagination;
 }

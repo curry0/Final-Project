@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Product } from '../shared/models/product';
 import { Brand } from '../shared/models/brand';
 import { Type } from '../shared/models/type';
+import { ShopParams } from '../shared/models/shopParams';
+import { PaginatedResult } from '../shared/models/pagination';
+import { map } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -10,17 +13,29 @@ import { Type } from '../shared/models/type';
 export class ShopService {
 
     baseUrl = 'http://localhost:5000/api/'
+    paginatedResult: PaginatedResult<Product[]> = new PaginatedResult<Product[]>;
 
     constructor(private http: HttpClient) { }
 
-    getProducts(brandId?: number, typeId?: number, sort?: string) {
+    getProducts(shopParams: ShopParams, page?:number, itemsPerPage?: number) {
         let params = new HttpParams();
 
-        if (brandId) params = params.append('brandId', brandId);
-        if (typeId) params = params.append('typeId', typeId);
-        if (sort) params = params.append('sort', sort);
+        if (shopParams.brandId > 0) params = params.append('brandId', shopParams.brandId);
+        if (shopParams.typeId > 0) params = params.append('typeId', shopParams.typeId);
+        if (shopParams.pageNumber) params = params.append('pageNumber', shopParams.pageNumber)
+        if (shopParams.pageSize) params = params.append('pageSize', shopParams.pageSize)
+        params = params.append('sort', shopParams.sort);
 
-        return this.http.get<Product[]>(this.baseUrl + 'products', { params })
+        return this.http.get<Product[]>(this.baseUrl + 'products', { observe: 'response', params }).pipe(
+            map(response => {
+                if (response.body) this.paginatedResult.result = response.body
+                const pagination = response.headers.get('Pagination');
+                if (pagination) {
+                    this.paginatedResult.pagination = JSON.parse(pagination);
+                }
+                return this.paginatedResult;
+            })
+        )
     }
 
     getBrands() {
