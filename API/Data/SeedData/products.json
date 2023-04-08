@@ -1,75 +1,75 @@
 [
   {
-    "Name": "Angular Speedster Board 2000",
+    "Name": "Gym Shark Gloves",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 200,
-    "PictureUrl": "images/products/sb-ang1.png",
+    "PictureUrl": "images/products/gloves1.png",
     "ProductTypeId": 1,
-    "ProductBrandId": 1
+    "ProductBrandId": 2
   },
   {
-    "Name": "Green Angular Board 3000",
+    "Name": "UA Gloves",
     "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
     "Price": 150,
-    "PictureUrl": "images/products/sb-ang2.png",
+    "PictureUrl": "images/products/gloves2.png",
     "ProductTypeId": 1,
-    "ProductBrandId": 1
+    "ProductBrandId": 6
   },
   {
-    "Name": "Core Board Speed Rush 3",
+    "Name": "Boxer Gloves",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 180,
-    "PictureUrl": "images/products/sb-core1.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "Net Core Super Board",
-    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 300,
-    "PictureUrl": "images/products/sb-core2.png",
-    "ProductTypeId": 1,
-    "ProductBrandId": 2
-  },
-  {
-    "Name": "React Board Super Whizzy Fast",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 250,
-    "PictureUrl": "images/products/sb-react1.png",
+    "PictureUrl": "images/products/gloves3.png",
     "ProductTypeId": 1,
     "ProductBrandId": 4
   },
   {
-    "Name": "Typescript Entry Board",
-    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-    "Price": 120,
-    "PictureUrl": "images/products/sb-ts1.png",
+    "Name": "Black & Blue Gloves",
+    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 300,
+    "PictureUrl": "images/products/gloves4.png",
     "ProductTypeId": 1,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "Pink Sweatpants",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+    "Price": 250,
+    "PictureUrl": "images/products/pants1.png",
+    "ProductTypeId": 4,
     "ProductBrandId": 5
   },
   {
-    "Name": "Core Blue Hat",
+    "Name": "Green Sweatpants",
+    "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
+    "Price": 120,
+    "PictureUrl": "images/products/pants2.png",
+    "ProductTypeId": 4,
+    "ProductBrandId": 5
+  },
+  {
+    "Name": "Optimum Nutrition Whey Protein 900gr",
     "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 10,
-    "PictureUrl": "images/products/hat-core1.png",
+    "PictureUrl": "images/products/proteins1.png",
     "ProductTypeId": 2,
-    "ProductBrandId": 2
+    "ProductBrandId": 1
   },
   {
-    "Name": "Green React Woolen Hat",
+    "Name": "Optimum Nutrition Whey Protein 2200gr",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 8,
-    "PictureUrl": "images/products/hat-react1.png",
+    "PictureUrl": "images/products/proteins3.png",
     "ProductTypeId": 2,
-    "ProductBrandId": 4
+    "ProductBrandId": 1
   },
   {
-    "Name": "Purple React Woolen Hat",
+    "Name": "Optimum Nutrition Whey Protein 1.7kg",
     "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 15,
-    "PictureUrl": "images/products/hat-react2.png",
+    "PictureUrl": "images/products/proteins2.png",
     "ProductTypeId": 2,
-    "ProductBrandId": 4
+    "ProductBrandId": 1
   },
   {
     "Name": "Blue Code Gloves",
@@ -80,67 +80,75 @@
     "ProductBrandId": 3
   },
   {
-    "Name": "Green Code Gloves",
+    "Name": "Gym Gray Top",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 15,
-    "PictureUrl": "images/products/glove-code2.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 3
-  },
-  {
-    "Name": "Purple React Gloves",
-    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.",
-    "Price": 16,
-    "PictureUrl": "images/products/glove-react1.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Green React Gloves",
-    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-    "Price": 14,
-    "PictureUrl": "images/products/glove-react2.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 4
-  },
-  {
-    "Name": "Redis Red Boots",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 250,
-    "PictureUrl": "images/products/boot-redis1.png",
-    "ProductTypeId": 3,
+    "PictureUrl": "images/products/shirt1.png",
+    "ProductTypeId": 7,
     "ProductBrandId": 6
   },
   {
-    "Name": "Core Red Boots",
+    "Name": "Gym Black Top",
+    "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.",
+    "Price": 16,
+    "PictureUrl": "images/products/shirt2.png",
+    "ProductTypeId": 7,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "Gray T-Shirt",
+    "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+    "Price": 14,
+    "PictureUrl": "images/products/shirt3.png",
+    "ProductTypeId": 7,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "Blue ACICS Shoes",
+    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 250,
+    "PictureUrl": "images/products/shoes1.png",
+    "ProductTypeId": 7,
+    "ProductBrandId": 7
+  },
+  {
+    "Name": "Black Adidas Shorts",
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 189.99,
-    "PictureUrl": "images/products/boot-core2.png",
+    "PictureUrl": "images/products/shorts1.png",
     "ProductTypeId": 3,
-    "ProductBrandId": 2
+    "ProductBrandId": 8
   },
   {
-    "Name": "Core Purple Boots",
+    "Name": "Black Boxer Shorts",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 199.99,
-    "PictureUrl": "images/products/boot-core1.png",
+    "PictureUrl": "images/products/shorts2.png",
     "ProductTypeId": 3,
     "ProductBrandId": 2
   },
   {
-    "Name": "Angular Purple Boots",
+    "Name": "Red Adidas Shorts",
     "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
     "Price": 150,
-    "PictureUrl": "images/products/boot-ang2.png",
+    "PictureUrl": "images/products/shorts3.png",
     "ProductTypeId": 3,
-    "ProductBrandId": 1
+    "ProductBrandId": 8
   },
   {
-    "Name": "Angular Blue Boots",
+    "Name": "Gym Black Hoodie",
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 180,
-    "PictureUrl": "images/products/boot-ang1.png",
-    "ProductTypeId": 3,
+    "PictureUrl": "images/products/hoodie1.png",
+    "ProductTypeId": 6,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "Optimum Nutrition Suplement Package",
+    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+    "Price": 180,
+    "PictureUrl": "images/products/package1.png",
+    "ProductTypeId": 2,
     "ProductBrandId": 1
   }
 ]

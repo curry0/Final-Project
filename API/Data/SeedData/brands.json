@@ -1,26 +1,34 @@
 [
   {
     "Id": 1,
-    "Name": "Angular"
+    "Name": "Optimum Nutrition"
   },
   {
     "Id": 2,
-    "Name": "NetCore"
+    "Name": "Gym Shark"
   },
   {
     "Id": 3,
-    "Name": "VS Code"
+    "Name": "Poleo Sport"
   },
   {
     "Id": 4,
-    "Name": "React"
+    "Name": "ZOE"
   },
   {
     "Id": 5,
-    "Name": "Typescript"
+    "Name": "SWY"
   },
   {
     "Id": 6,
-    "Name": "Redis"
+    "Name": "Under Armour"
+  },
+  {
+    "Id": 7,
+    "Name": "ACICS"
+  },
+  {
+    "Id": 8,
+    "Name": "Adidas"
   }
 ]

@@ -24,6 +24,7 @@ export class ShopService {
         if (shopParams.typeId > 0) params = params.append('typeId', shopParams.typeId);
         if (shopParams.pageNumber) params = params.append('pageNumber', shopParams.pageNumber)
         if (shopParams.pageSize) params = params.append('pageSize', shopParams.pageSize)
+        if (shopParams.search) params = params.append('search', shopParams.search)
         params = params.append('sort', shopParams.sort);
 
         return this.http.get<Product[]>(this.baseUrl + 'products', { observe: 'response', params }).pipe(
