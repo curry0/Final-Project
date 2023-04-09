@@ -5,7 +5,7 @@ import { ShopComponent } from './shop.component';
 
 const routes: Routes = [
     { path: '', component: ShopComponent },
-    { path: ':id', component: ProductViewComponent },
+    { path: ':id', component: ProductViewComponent, data: { breadcrumb: { alias: 'productView'}} },
 ]
 
 @NgModule({
