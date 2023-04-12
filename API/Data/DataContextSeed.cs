@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using API.Entities;
+using API.Entities.Order;
 
 namespace API.Data
 {
@@ -15,6 +16,7 @@ namespace API.Data
             string brandsPath = Path.Combine(basePath, "Data", "SeedData", "brands.json");
             string typesPath = Path.Combine(basePath, "Data", "SeedData", "types.json");
             string productsPath = Path.Combine(basePath, "Data", "SeedData", "products.json");
+            string deliveryPath = Path.Combine(basePath, "Data", "SeedData", "delivery.json");
             if (!context.ProductBrands.Any())
             {
                 var brandsData = File.ReadAllText(brandsPath);
@@ -32,6 +34,12 @@ namespace API.Data
                 var productsData = File.ReadAllText(productsPath);
                 var products = JsonSerializer.Deserialize<List<Product>>(productsData);
                 context.Products.AddRange(products);
+            }
+            if (!context.DeliveryMethods.Any())
+            {
+                var deliveryData = File.ReadAllText(deliveryPath);
+                var methods = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryData);
+                context.DeliveryMethods.AddRange(methods);
             }
             if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();
         }
