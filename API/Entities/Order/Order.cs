@@ -25,7 +25,7 @@ namespace API.Entities.Order
         public string PaymentIntentId { get; set; }
         public decimal GetTotal() 
         {
-            return Subtotal = DeliveryMethod.Price;
+            return Subtotal + DeliveryMethod.Price;
         }
     }
 }
