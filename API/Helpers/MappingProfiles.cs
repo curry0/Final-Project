@@ -2,6 +2,7 @@ using API.DisplayModels;
 using API.Entities;
 using API.Entities.Identity;
 using API.Entities.Order;
+using API.Extensions;
 using AutoMapper;
 
 namespace API.Helpers
@@ -32,6 +33,12 @@ namespace API.Helpers
                 .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.ItemOrdered.ProductName))
                 .ForMember(dest => dest.PictureUrl, opt => opt.MapFrom(src => src.ItemOrdered.PictureUrl))
                 .ForMember(dest => dest.PictureUrl, opt => opt.MapFrom<OrderItemUrlResolver>());
+
+            CreateMap<AppUser, MemberDisplayModel>()
+                .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.Photos.FirstOrDefault(x => x.IsMain).Url))
+                .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
+
+            CreateMap<Photo, PhotoDisplayModel>();
 
         }
     }

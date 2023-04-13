@@ -6,6 +6,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { MemberDetailComponent } from './components/members/member-detail/member-detail.component';
 import { MemberListComponent } from './components/members/member-list/member-list.component';
 import { ListsComponent } from './components/lists/lists.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
 
 
 
@@ -15,7 +16,8 @@ import { ListsComponent } from './components/lists/lists.component';
         MessagesComponent,
         MemberDetailComponent,
         MemberListComponent,
-        ListsComponent
+        ListsComponent,
+        MemberCardComponent
     ],
     imports: [
         CommonModule,

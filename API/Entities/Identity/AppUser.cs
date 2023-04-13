@@ -15,11 +15,6 @@ namespace API.Entities.Identity
         public string Introduction { get; set; }
         public string LookingFor { get; set; }
         public string Interests { get; set; }
-        public ICollection<Photo> Photos { get; set; } = new List<Photo>();
-
-        public int GetAge()
-        {
-            return DateOfBirth.CalculateAge();
-        }
+        public List<Photo> Photos { get; set; } = new List<Photo>();
     }
 }
