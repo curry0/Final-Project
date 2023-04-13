@@ -31,6 +31,14 @@ namespace API.Data
                 .FirstOrDefaultAsync(x => x.Id == id && x.BuyerEmail == email);
         }
 
+        public async Task<Order> GetOrderByPaymentIntentIdAsync(string paymentIntentId)
+        {
+            return await _context.Orders
+                .Include(x => x.OrderItems)
+                .Include(x => x.DeliveryMethod)
+                .FirstOrDefaultAsync(x => x.PaymentIntentId == paymentIntentId);
+        }
+
         public async Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string email)
         {
             return await _context.Orders

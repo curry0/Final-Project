@@ -33,16 +33,25 @@ namespace API.Services
 
             var subtotal = items.Sum(x => x.Price * x.Quantity);
 
-            var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal);
+            // check if order exists
+            var order = await _unitOfWork.OrderRepository.GetOrderByPaymentIntentIdAsync(basket.PaymentIntentId);
 
-            _unitOfWork.OrderRepository.Add(order);
+            if (order != null) 
+            {
+                order.ShipToAddress = shippingAddress;
+                order.DeliveryMethod = deliveryMethod;
+                order.Subtotal = subtotal;
+                _unitOfWork.OrderRepository.Update(order);
+            }
+            else
+            {
+            order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal, basket.PaymentIntentId);
+            _unitOfWork.OrderRepository.Add(order);     
+            }
 
             var result = await _unitOfWork.Complete();
 
             if (result <= 0) return null;
-
-            // delete basket
-            await _basketRepo.DeleteBasketAsync(basketId);
             
             return order;
         }

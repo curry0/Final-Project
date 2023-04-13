@@ -7,7 +7,7 @@ namespace API.Entities.Order
         [EnumMember(Value = "Pending")]
         Pending,
         [EnumMember(Value = "Payment Recieved")]
-        PaymentRecieved,
+        PaymentReceived,
         [EnumMember(Value = "Payment Failed")]
         PaymentFailed
     }
