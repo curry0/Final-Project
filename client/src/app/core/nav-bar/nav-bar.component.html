@@ -5,6 +5,28 @@
     <nav class="my-2 text-uppercase fs-4">
         <a class="p-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a class="p-2" routerLink="/shop" routerLinkActive="active">Shop</a>
+        <div class="dropdown d-inline-block" dropdown>
+            <a dropdownToggle class="dropdown-toggle p-2" routerLink="/dating" routerLinkActive="active" [class.dropdown-toggle]="(accountService.currentUser$ | async)">Dating</a>
+            <ng-container *ngIf="(accountService.currentUser$ | async)">
+            <ul *dropdownMenu class="dropdown-menu">
+                <li class="py-1">
+                    <a routerLink="/dating/members" class="dropdown-item">
+                        <i class="fa fa-users me-3"></i> Members
+                    </a>
+                </li>
+                <li class="py-1">
+                    <a routerLink="/dating/lists" class="dropdown-item">
+                        <i class="fa fa-list me-3"></i> Lists
+                    </a>
+                </li>
+                <li class="py-1">
+                    <a routerLink="/dating/messages" class="dropdown-item">
+                        <i class="fa fa-comments-o me-3"></i> Messages
+                    </a>
+                </li>
+            </ul>
+        </ng-container>
+        </div>
         <a class="p-2" routerLink="/test-error" routerLinkActive="active">Errors</a>
     </nav>
     <div class="d-flex align-items-center">

@@ -50,7 +50,7 @@ namespace API.Identity.Migrations
                     b.HasIndex("AppUserId")
                         .IsUnique();
 
-                    b.ToTable("Address");
+                    b.ToTable("Address", (string)null);
                 });
 
             modelBuilder.Entity("API.Entities.Identity.AppUser", b =>
