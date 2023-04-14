@@ -10,10 +10,12 @@ import { AuthGuard } from '../core/gurads/auth.guard';
 
 const routes: Routes = [
     { path: '', component: DatingComponent },
-    { path: 'members', component: MemberListComponent, canActivate:[AuthGuard] },
-    { path: 'members/:id', component: MemberDetailComponent, canActivate:[AuthGuard] },
-    { path: 'lists', component: ListsComponent },
-    { path: 'messages', component: MessagesComponent },
+    { path: '', runGuardsAndResolvers: 'always', canActivate:[AuthGuard], data: {breadcrumb: 'Members'}, children: [
+        { path: 'members', component: MemberListComponent },
+        { path: 'members/:username', component: MemberDetailComponent },
+        { path: 'lists', component: ListsComponent },
+        { path: 'messages', component: MessagesComponent },
+    ]},
     { path: '**', component: DatingComponent, pathMatch: 'full' }
 ]
 

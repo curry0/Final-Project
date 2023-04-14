@@ -12,6 +12,8 @@ import { StepperComponent } from './components/stepper/stepper.component';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { BasketSummaryComponent } from './basket-summary/basket-summary.component';
 import { RouterModule } from '@angular/router';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 @NgModule({
     declarations: [
@@ -29,7 +31,9 @@ import { RouterModule } from '@angular/router';
         ReactiveFormsModule,
         BsDropdownModule.forRoot(),
         CdkStepperModule,
-        RouterModule
+        RouterModule,
+        TabsModule.forRoot(),
+        NgxGalleryModule
     ],
     exports: [
         PaginationModule,
@@ -43,6 +47,8 @@ import { RouterModule } from '@angular/router';
         StepperComponent,
         CdkStepperModule,
         BasketSummaryComponent,
+        TabsModule,
+        NgxGalleryModule
     ]
 })
 export class SharedModule { }
