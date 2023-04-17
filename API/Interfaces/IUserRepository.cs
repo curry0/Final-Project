@@ -1,5 +1,6 @@
 using API.DisplayModels;
 using API.Entities.Identity;
+using API.Helpers;
 
 namespace API.Interfaces
 {
@@ -10,7 +11,7 @@ namespace API.Interfaces
         Task<IEnumerable<AppUser>> GetUsersAsync();
         Task<AppUser> GetUserByIdAsync(string id);
         Task<AppUser> GetUserByUsernameAsync(string username);
-        Task<IEnumerable<MemberDisplayModel>> GetMembersAsync();
+        Task<PagedList<MemberDisplayModel>> GetMembersAsync(UserParams userParams);
         Task<MemberDisplayModel> GetMemberAsync(string username);
 
     }

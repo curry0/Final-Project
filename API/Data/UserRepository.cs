@@ -1,5 +1,6 @@
 using API.DisplayModels;
 using API.Entities.Identity;
+using API.Helpers;
 using API.Identity;
 using API.Interfaces;
 using AutoMapper;
@@ -26,11 +27,14 @@ namespace API.Data
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<MemberDisplayModel>> GetMembersAsync()
+        public async Task<PagedList<MemberDisplayModel>> GetMembersAsync(UserParams userParams)
         {
-            return await _context.Users
+            var query = _context.Users
                 .ProjectTo<MemberDisplayModel>(_mapper.ConfigurationProvider)
-                .ToListAsync();
+                .AsNoTracking();
+            
+            return await PagedList<MemberDisplayModel>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
+            
         }
 
         public async Task<AppUser> GetUserByIdAsync(string id)

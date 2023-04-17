@@ -4,6 +4,7 @@ using API.Entities;
 using API.Entities.Identity;
 using API.Errors;
 using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -29,9 +30,12 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDisplayModel>>> GetUsers()
+        public async Task<ActionResult<PagedList<MemberDisplayModel>>> GetUsers([FromQuery] UserParams userParams)
         {
-            var users = await _userRepository.GetMembersAsync();
+            // var currentUser = await _userRepository.GetUserByUsernameAsync(User.GetEmailClaim());
+            // userParams.CurrentUsername = currentUser.UserName;
+            var users = await _userRepository.GetMembersAsync(userParams);
+            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages));
             return Ok(users);
         }
 
