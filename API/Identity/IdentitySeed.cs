@@ -28,7 +28,7 @@ namespace API.Identity
                         ZipCode = "6000"
                     },
                     Gender = "male",
-                    DateOfBirth = new DateOnly(1990, 1, 1),
+                    DateOfBirth = new DateTime(1990, 1, 1),
                     KnownAs = "Bob",
                     Introduction = "I am Bob",
                     LookingFor = "I am looking for women",

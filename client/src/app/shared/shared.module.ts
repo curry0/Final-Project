@@ -15,6 +15,7 @@ import { RouterModule } from '@angular/router';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,7 @@ import { FileUploadModule } from 'ng2-file-upload';
         OrderTotalsComponent,
         TextInputComponent,
         StepperComponent,
-        BasketSummaryComponent
+        BasketSummaryComponent,
     ],
     imports: [
         CommonModule,
@@ -35,7 +36,8 @@ import { FileUploadModule } from 'ng2-file-upload';
         RouterModule,
         TabsModule.forRoot(),
         NgxGalleryModule,
-        FileUploadModule
+        FileUploadModule,
+        BsDatepickerModule.forRoot()
     ],
     exports: [
         PaginationModule,
@@ -51,7 +53,8 @@ import { FileUploadModule } from 'ng2-file-upload';
         BasketSummaryComponent,
         TabsModule,
         NgxGalleryModule,
-        FileUploadModule
+        FileUploadModule,
+        BsDatepickerModule,
     ]
 })
 export class SharedModule { }

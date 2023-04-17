@@ -3,6 +3,7 @@ using API.Entities;
 using API.Entities.Identity;
 using API.Entities.Order;
 using API.Extensions;
+using API.Models;
 using AutoMapper;
 
 namespace API.Helpers
@@ -41,6 +42,11 @@ namespace API.Helpers
             CreateMap<Photo, PhotoDisplayModel>();
 
             CreateMap<AppUser, MemberUpdateDisplayModel>()
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
+                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Address.Country))
+                .ReverseMap();
+
+            CreateMap<AppUser, RegisterSaveModel>()
                 .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
                 .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Address.Country))
                 .ReverseMap();

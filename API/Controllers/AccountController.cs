@@ -33,9 +33,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<UserDisplayModel>> GetCurrentUser()
         {
-
             var user = await _userManager.Users.Include(x => x.Photos).SingleOrDefaultAsync(x => x.Email == User.GetEmailClaim());
-
             return new UserDisplayModel
             {
                 Email = user.Email,
@@ -100,13 +98,16 @@ namespace API.Controllers
         {
             if (CheckEmailExistsAsync(registerModel.Email).Result.Value)
             {
-                return new BadRequestObjectResult(new ApiValidationErrorResponse{Errors = new []{"Email address is in use"}});
+                return new BadRequestObjectResult(new ApiValidationErrorResponse { Errors = new[] { "Email address is in use" } });
             }
-            var user = new AppUser
+
+            var user = _mapper.Map<AppUser>(registerModel);
+            user.UserName = registerModel.Email;
+            user.Email = registerModel.Email;
+            user.Address = new Address
             {
-                DisplayName = registerModel.DisplayName,
-                Email = registerModel.Email,
-                UserName = registerModel.Email
+                City = registerModel.City,
+                Country = registerModel.Country
             };
 
             var result = await _userManager.CreateAsync(user, registerModel.Password);
@@ -117,7 +118,8 @@ namespace API.Controllers
             {
                 DisplayName = user.DisplayName,
                 Token = _tokenService.CreateToken(user),
-                Email = user.Email
+                Email = user.Email,
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
             };
         }
 

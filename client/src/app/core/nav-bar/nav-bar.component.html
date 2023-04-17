@@ -45,12 +45,7 @@
         </ng-container>
 
         <ng-container *ngIf="(accountService.currentUser$ | async) as user">
-            <ng-container *ngIf="user.photoUrl">
-                <img src="{{user.photoUrl}}" alt="User's main photo">
-            </ng-container>
-            <!-- <ng-container *ngIf="!user.photoUrl">
-                <img src="{{'../../../../../assets/images/user.png'}}" alt="User's main photo">
-            </ng-container> -->
+            <img src="{{user.photoUrl || '../../../../../assets/images/user.png'}}" alt="User's main photo">
             <div class="dropdown ms-3 me-5" style="cursor: pointer;" dropdown>
                 <a dropdownToggle class="dropdown-toggle">
                     <strong>Welcome {{user.displayName}}</strong>

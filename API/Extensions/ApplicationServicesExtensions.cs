@@ -23,6 +23,7 @@ namespace API.Extensions
                 var options = ConfigurationOptions.Parse(config.GetConnectionString("Redis"));
                 return ConnectionMultiplexer.Connect(options);
             });
+            services.AddControllers().AddNewtonsoftJson();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>();
