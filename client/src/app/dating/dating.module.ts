@@ -9,6 +9,7 @@ import { ListsComponent } from './components/lists/lists.component';
 import { MemberCardComponent } from './components/members/member-card/member-card.component';
 import { SharedModule } from '../shared/shared.module';
 import { MemberEditComponent } from './components/members/member-edit/member-edit.component';
+import { PhotoEditorComponent } from './components/members/photo-editor/photo-editor.component';
 
 
 
@@ -20,7 +21,8 @@ import { MemberEditComponent } from './components/members/member-edit/member-edi
         MemberListComponent,
         ListsComponent,
         MemberCardComponent,
-        MemberEditComponent
+        MemberEditComponent,
+        PhotoEditorComponent
     ],
     imports: [
         CommonModule,

@@ -14,6 +14,7 @@ import { BasketSummaryComponent } from './basket-summary/basket-summary.componen
 import { RouterModule } from '@angular/router';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
         CdkStepperModule,
         RouterModule,
         TabsModule.forRoot(),
-        NgxGalleryModule
+        NgxGalleryModule,
+        FileUploadModule
     ],
     exports: [
         PaginationModule,
@@ -48,7 +50,8 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
         CdkStepperModule,
         BasketSummaryComponent,
         TabsModule,
-        NgxGalleryModule
+        NgxGalleryModule,
+        FileUploadModule
     ]
 })
 export class SharedModule { }

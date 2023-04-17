@@ -1,5 +1,6 @@
 using API.Data;
 using API.Errors;
+using API.Helpers;
 using API.Interfaces;
 using API.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,8 @@ namespace API.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IPhotoService, PhotoService>();
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.InvalidModelStateResponseFactory = actionContext =>

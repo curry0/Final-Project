@@ -9,6 +9,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -33,13 +34,14 @@ namespace API.Controllers
         public async Task<ActionResult<UserDisplayModel>> GetCurrentUser()
         {
 
-            var user = await _userManager.FindUserByEmail(User);
+            var user = await _userManager.Users.Include(x => x.Photos).SingleOrDefaultAsync(x => x.Email == User.GetEmailClaim());
 
             return new UserDisplayModel
             {
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user),
-                DisplayName = user.DisplayName
+                DisplayName = user.DisplayName,
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
             };
         }
 
@@ -76,7 +78,7 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<UserDisplayModel>> Login(LoginSaveModel loginModel)
         {
-            var user = await _userManager.FindByEmailAsync(loginModel.Email);
+            var user = await _userManager.Users.Include(x => x.Photos).SingleOrDefaultAsync(x => x.Email == loginModel.Email);
 
             if (user == null) return Unauthorized(new ApiResponse(401));
 
@@ -88,7 +90,8 @@ namespace API.Controllers
             {
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user),
-                DisplayName = user.DisplayName
+                DisplayName = user.DisplayName,
+                PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
             };
         }
 

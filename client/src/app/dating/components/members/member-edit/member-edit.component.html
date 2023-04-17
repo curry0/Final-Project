@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <div>
                         <strong>Location:</strong>
-                        <p>{{member.address?.city}}</p>
+                        <p>{{member.address.city}}</p>
                     </div>
                     <div>
                         <strong>Age:</strong>
@@ -61,7 +61,7 @@
 
                 </tab>
                 <tab heading="Edit Photos">
-                    <p></p>
+                    <app-photo-editor [member]="member"></app-photo-editor>
                 </tab>
 
             </tabset>
