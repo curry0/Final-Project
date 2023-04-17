@@ -40,6 +40,12 @@ namespace API.Helpers
 
             CreateMap<Photo, PhotoDisplayModel>();
 
+            CreateMap<AppUser, MemberUpdateDisplayModel>()
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
+                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Address.Country))
+                .ReverseMap();
+
+
         }
     }
 }

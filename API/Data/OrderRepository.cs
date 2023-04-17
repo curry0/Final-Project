@@ -45,6 +45,7 @@ namespace API.Data
                 .Where(x => x.BuyerEmail == email)
                 .Include(x => x.OrderItems)
                 .Include(x => x.DeliveryMethod)
+                .OrderByDescending(x => x.OrderedDate)
                 .ToListAsync();
         }
 

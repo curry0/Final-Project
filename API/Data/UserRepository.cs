@@ -21,7 +21,7 @@ namespace API.Data
         public async Task<MemberDisplayModel> GetMemberAsync(string username)
         {
             return await _context.Users
-                .Where(x => x.UserName == username)
+                .Where(x => x.Email == username)
                 .ProjectTo<MemberDisplayModel>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
