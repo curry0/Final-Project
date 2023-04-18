@@ -3,6 +3,7 @@ export interface User {
     displayName: string;
     token: string;
     photoUrl: string;
+    gender: string;
 }
 
 export interface Address {

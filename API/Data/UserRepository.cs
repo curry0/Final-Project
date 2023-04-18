@@ -1,11 +1,13 @@
 using API.DisplayModels;
 using API.Entities.Identity;
+using API.Extensions;
 using API.Helpers;
 using API.Identity;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API.Data
 {
@@ -29,12 +31,36 @@ namespace API.Data
 
         public async Task<PagedList<MemberDisplayModel>> GetMembersAsync(UserParams userParams)
         {
-            var query = _context.Users
-                .ProjectTo<MemberDisplayModel>(_mapper.ConfigurationProvider)
-                .AsNoTracking();
-            
-            return await PagedList<MemberDisplayModel>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
-            
+            var query = _context.Users.AsQueryable();
+
+            query = query.Where(x => x.UserName != userParams.CurrentUsername);
+            query = query.Where(x => x.Gender == userParams.Gender);
+
+            if (userParams.MinAge != 0)
+            {
+                var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+                query = query.Where(x => x.DateOfBirth >= minDob);
+            }
+            if (userParams.MaxAge != 0)
+            {
+                var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
+                query = query.Where(x => x.DateOfBirth <= maxDob);
+            }
+
+            if (!userParams.OrderBy.IsNullOrEmpty())
+            {
+                query = userParams.OrderBy switch
+                {
+                    "created" => query.OrderByDescending(x => x.Created),
+                    _ => query.OrderByDescending(x => x.LastActive)
+                };
+            }
+
+            return await PagedList<MemberDisplayModel>.CreateAsync
+                (query.AsNoTracking().ProjectTo<MemberDisplayModel>(_mapper.ConfigurationProvider),
+                userParams.PageNumber,
+                userParams.PageSize);
+
         }
 
         public async Task<AppUser> GetUserByIdAsync(string id)
