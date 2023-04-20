@@ -1,7 +1,6 @@
 using API.DisplayModels;
 using API.Entities;
 using API.Helpers;
-using API.Identity;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -11,9 +10,9 @@ namespace API.Data
 {
     public class MessageRepository : IMessageRepository
     {
-        private readonly AppIdentityDbContext _context;
+        private readonly DataContext _context;
         private readonly IMapper _mapper;
-        public MessageRepository(AppIdentityDbContext context, IMapper mapper)
+        public MessageRepository(DataContext context, IMapper mapper)
         {
             _mapper = mapper;
             _context = context;

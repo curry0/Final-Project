@@ -1,8 +1,6 @@
 using API.DisplayModels;
 using API.Entities.Identity;
-using API.Extensions;
 using API.Helpers;
-using API.Identity;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -13,9 +11,9 @@ namespace API.Data
 {
     public class UserRepository : IUserRepository
     {
-        private readonly AppIdentityDbContext _context;
+        private readonly DataContext _context;
         private readonly IMapper _mapper;
-        public UserRepository(AppIdentityDbContext context, IMapper mapper)
+        public UserRepository(DataContext context, IMapper mapper)
         {
             _mapper = mapper;
             _context = context;

@@ -3,7 +3,6 @@ using API.Entities;
 using API.Entities.Identity;
 using API.Extensions;
 using API.Helpers;
-using API.Identity;
 using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,10 +10,12 @@ namespace API.Data
 {
     public class LikesRepository : ILikesRepository
     {
-        private readonly AppIdentityDbContext _context;
-        public LikesRepository(AppIdentityDbContext context)
+        private readonly DataContext _context;
+        
+        public LikesRepository(DataContext context)
         {
             _context = context;
+            
         }
 
         public async Task<UserLike> GetUserLike(string sourceUserId, string targetUserId)
