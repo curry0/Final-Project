@@ -7,11 +7,11 @@ namespace API.Entities
     {
         public AppUser Sender { get; set; }
         [Required]
-        public string SenderId { get; set; }
+        public int SenderId { get; set; }
         public string SenderUsername { get; set; }
         public AppUser Recipient { get; set; }
         [Required]
-        public string RecipientId { get; set; }
+        public int RecipientId { get; set; }
         public string RecipientUsername { get; set; }
         public string Content { get; set; }
         public DateTime? DateRead { get; set; }

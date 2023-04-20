@@ -18,7 +18,7 @@ namespace API.Data
             
         }
 
-        public async Task<UserLike> GetUserLike(string sourceUserId, string targetUserId)
+        public async Task<UserLike> GetUserLike(int sourceUserId, int targetUserId)
         {
             return await _context.Likes.FindAsync(sourceUserId, targetUserId);
         }
@@ -53,7 +53,7 @@ namespace API.Data
             return await PagedList<LikeDisplayModel>.CreateAsync(likedUsers, likesParams.PageNumber, likesParams.PageSize);
         }
 
-        public async Task<AppUser> GetUserWithLikes(string userId)
+        public async Task<AppUser> GetUserWithLikes(int userId)
         {
             return await _context.Users
                 .Include(x => x.LikedUsers)

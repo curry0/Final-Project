@@ -7,8 +7,8 @@ namespace API.Interfaces
 {
     public interface ILikesRepository
     {
-        Task<UserLike> GetUserLike(string sourceUserId, string targetUserId);
-        Task<AppUser> GetUserWithLikes(string userId);
+        Task<UserLike> GetUserLike(int sourceUserId, int targetUserId);
+        Task<AppUser> GetUserWithLikes(int userId);
         Task<PagedList<LikeDisplayModel>> GetUserLikes(LikesParams likesParams);
     }
 }
