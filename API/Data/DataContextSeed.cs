@@ -7,6 +7,7 @@ using API.Entities;
 using API.Entities.Identity;
 using API.Entities.Order;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
@@ -46,45 +47,42 @@ namespace API.Data
             if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();
         }
 
-         public static async Task SeedUsersAsync(UserManager<AppUser> userManager)
+        public static async Task SeedUsersAsync(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
             string basePath = Directory.GetCurrentDirectory();
             string userPath = Path.Combine(basePath, "Data", "SeedData", "UserSeedData.json");
-            if (!userManager.Users.Any())
+            if (await userManager.Users.AnyAsync()) return;
+            var userData = await File.ReadAllTextAsync(userPath);
+            var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
+            var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
+            var roles = new List<AppRole>
             {
-                var userData = await File.ReadAllTextAsync(userPath);
-                var user = new AppUser
-                {
-                    DisplayName = "Bob",
-                    Email = "bob@test.com",
-                    UserName = "bob@test.com",
-                    Address = new Entities.Identity.Address
-                    {
-                        FirstName = "Bob",
-                        LastName = "Bob",
-                        Street = "Brolo",
-                        City = "Koper",
-                        Country = "Slovenia",
-                        ZipCode = "6000"
-                    },
-                    Gender = "male",
-                    DateOfBirth = new DateTime(1990, 1, 1),
-                    KnownAs = "Bob",
-                    Introduction = "I am Bob",
-                    LookingFor = "I am looking for women",
-                    Interests = "I like to play football",
-                    Photos = new List<Photo>
-                    {
-                        new Photo
-                        {
-                            Url = "https://randomuser.me/api/portraits/men/90.jpg",
-                            IsMain = true
-                        }
-                    }
-                };
+                new AppRole{Name = "Member"},
+                new AppRole{Name = "Admin"},
+                new AppRole{Name = "Moderator"}
+            };
 
-                await userManager.CreateAsync(user, "P@ssw0rd");
+            foreach (var role in roles)
+            {
+                await roleManager.CreateAsync(role);
             }
+
+            foreach (var user in users) 
+            {
+                user.UserName = user.DisplayName.ToLower();
+                await userManager.CreateAsync(user, "P@ssw0rd");
+                await userManager.AddToRoleAsync(user, "Member");
+            }
+
+            var admin = new AppUser
+            {
+                Email = "admin@test.com",
+                DisplayName = "Admin",
+                UserName = "admin@test.com"
+            };
+
+            await userManager.CreateAsync(admin, "P@ssw0rd");
+            await userManager.AddToRolesAsync(admin, new[] {"Admin", "Moderator"});
         }
     }
 }

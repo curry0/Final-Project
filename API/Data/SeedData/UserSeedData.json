@@ -1,14 +1,40 @@
 [
     {
-        "DisplayName": "Lisa",
+        "DisplayName": "Bob",
+        "Email": "bob@test.com",
+        "UserName": "bob@test.com",
         "Address": {
-                "FirstName": "Lisa",
-                "LastName": "Harris",
-                "Street": "Bergen Street",
-                "City": "Greenbush",
-                "Country": "Martinique",
-                "ZipCode": "12345"
-            },
+            "FirstName": "Bob",
+            "LastName": "Bob",
+            "Street": "Brolo",
+            "City": "Koper",
+            "Country": "Slovenia",
+            "ZipCode": "6000"
+        },
+        "Gender": "male",
+        "DateOfBirth": "1990-01-01",
+        "KnownAs": "Bob",
+        "Introduction": "I am Bob",
+        "LookingFor": "I am looking for women",
+        "Interests": "I like to play football",
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/men/90.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "DisplayName": "Lisa",
+        "Email": "lisa@test.com",
+        "Address": {
+            "FirstName": "Lisa",
+            "LastName": "Harris",
+            "Street": "Bergen Street",
+            "City": "Greenbush",
+            "Country": "Martinique",
+            "ZipCode": "12345"
+        },
         "Gender": "female",
         "DateOfBirth": "1956-07-22",
         "KnownAs": "Lisa",
@@ -28,14 +54,15 @@
     },
     {
         "DisplayName": "Karen",
+        "Email": "karen@test.com",
         "Address": {
-                "FirstName": "Karen",
-                "LastName": "Harris",
-                "Street": "Bergen Street",
-                "City": "Greenbush",
-                "Country": "Martinique",
-                "ZipCode": "12345"
-            },
+            "FirstName": "Karen",
+            "LastName": "Harris",
+            "Street": "Bergen Street",
+            "City": "Greenbush",
+            "Country": "Martinique",
+            "ZipCode": "12345"
+        },
         "Gender": "female",
         "DateOfBirth": "1995-10-12",
         "KnownAs": "Karen",
@@ -56,13 +83,13 @@
     {
         "DisplayName": "Margo",
         "Address": {
-                "FirstName": "Margo",
-                "LastName": "Harris",
-                "Street": "Bergen Street",
-                "City": "Greenbush",
-                "Country": "Martinique",
-                "ZipCode": "12345"
-            },
+            "FirstName": "Margo",
+            "LastName": "Harris",
+            "Street": "Bergen Street",
+            "City": "Greenbush",
+            "Country": "Martinique",
+            "ZipCode": "12345"
+        },
         "Gender": "female",
         "DateOfBirth": "1959-01-24",
         "KnownAs": "Margo",
@@ -83,13 +110,13 @@
     {
         "DisplayName": "Lois",
         "Address": {
-                "FirstName": "Lois",
-                "LastName": "Harris",
-                "Street": "Bergen Street",
-                "City": "Greenbush",
-                "Country": "Martinique",
-                "ZipCode": "12345"
-            },
+            "FirstName": "Lois",
+            "LastName": "Harris",
+            "Street": "Bergen Street",
+            "City": "Greenbush",
+            "Country": "Martinique",
+            "ZipCode": "12345"
+        },
         "Gender": "female",
         "DateOfBirth": "1988-06-22",
         "KnownAs": "Lois",

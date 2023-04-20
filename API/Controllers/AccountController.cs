@@ -16,15 +16,12 @@ namespace API.Controllers
     public class AccountController : BaseApiController
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-        ITokenService tokenService, IMapper mapper)
+        public AccountController(UserManager<AppUser> userManager, ITokenService tokenService, IMapper mapper)
         {
             _mapper = mapper;
             _tokenService = tokenService;
-            _signInManager = signInManager;
             _userManager = userManager;
 
         }
@@ -37,7 +34,7 @@ namespace API.Controllers
             return new UserDisplayModel
             {
                 Email = user.Email,
-                Token = _tokenService.CreateToken(user),
+                Token = await _tokenService.CreateToken(user),
                 DisplayName = user.DisplayName,
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
             };
@@ -80,14 +77,14 @@ namespace API.Controllers
 
             if (user == null) return Unauthorized(new ApiResponse(401));
 
-            var result = await _signInManager.CheckPasswordSignInAsync(user, loginModel.Password, false);
+            var result = await _userManager.CheckPasswordAsync(user, loginModel.Password);
 
-            if (!result.Succeeded) return Unauthorized(new ApiResponse(401));
+            if (!result) return Unauthorized(new ApiResponse(401, "Invalid password or username"));
 
             return new UserDisplayModel
             {
                 Email = user.Email,
-                Token = _tokenService.CreateToken(user),
+                Token = await _tokenService.CreateToken(user),
                 DisplayName = user.DisplayName,
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
                 Gender = user.Gender
@@ -113,12 +110,15 @@ namespace API.Controllers
 
             var result = await _userManager.CreateAsync(user, registerModel.Password);
 
-            if (!result.Succeeded) return BadRequest(new ApiResponse(400));
+            if (!result.Succeeded) return BadRequest(new ApiResponse(400, result.Errors.ToString()));
+
+            var roleResult = await _userManager.AddToRoleAsync(user, "Member");
+            if (!roleResult.Succeeded) return BadRequest(new ApiResponse(400, roleResult.Errors.ToString()));
 
             return new UserDisplayModel
             {
                 DisplayName = user.DisplayName,
-                Token = _tokenService.CreateToken(user),
+                Token = await _tokenService.CreateToken(user),
                 Email = user.Email,
                 PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
                 Gender = user.Gender

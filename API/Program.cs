@@ -33,12 +33,13 @@ using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 var context = services.GetRequiredService<DataContext>();
 var userManager = services.GetRequiredService<UserManager<AppUser>>();
+var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
 var logger = services.GetRequiredService<ILogger<Program>>();
 try
 {
     await context.Database.MigrateAsync();
     await DataContextSeed.SeedAsync(context);
-    await DataContextSeed.SeedUsersAsync(userManager);
+    await DataContextSeed.SeedUsersAsync(userManager, roleManager);
 }
 catch (Exception ex)
 {
