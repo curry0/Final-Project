@@ -18,6 +18,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TimeagoModule } from 'ngx-timeago';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +29,7 @@ import { TimeagoModule } from 'ngx-timeago';
         TextInputComponent,
         StepperComponent,
         BasketSummaryComponent,
+        RolesModalComponent
     ],
     imports: [
         CommonModule,
@@ -43,6 +46,7 @@ import { TimeagoModule } from 'ngx-timeago';
         BsDatepickerModule.forRoot(),
         ButtonsModule.forRoot(),
         TimeagoModule.forRoot(),
+        ModalModule.forRoot(),
     ],
     exports: [
         PaginationModule,
@@ -63,6 +67,8 @@ import { TimeagoModule } from 'ngx-timeago';
         BsDatepickerModule,
         ButtonsModule,
         TimeagoModule,
+        ModalModule,
+        RolesModalComponent
     ]
 })
 export class SharedModule { }

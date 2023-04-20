@@ -5,7 +5,12 @@
     <nav class="my-2 text-uppercase fs-4">
         <a class="p-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a class="p-2" routerLink="/shop" routerLinkActive="active">Shop</a>
-        <a class="p-2" routerLink="/admin" routerLinkActive="active">Admin</a>
+        <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+            <a *ngIf="(user.roles.includes('Admin') || user.roles.includes('Moderator'))"
+            class="p-2" routerLink="/admin" routerLinkActive="active">Admin</a>
+        </ng-container>
+
+
         <ng-container *ngIf="(accountService.currentUser$ | async) === null">
             <a class="p-2" routerLink="/dating" routerLinkActive="active">Dating</a>
         </ng-container>
