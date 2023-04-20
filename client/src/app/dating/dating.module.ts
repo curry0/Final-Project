@@ -10,6 +10,7 @@ import { MemberCardComponent } from './components/members/member-card/member-car
 import { SharedModule } from '../shared/shared.module';
 import { MemberEditComponent } from './components/members/member-edit/member-edit.component';
 import { PhotoEditorComponent } from './components/members/photo-editor/photo-editor.component';
+import { MemberMessagesComponent } from './components/members/member-messages/member-messages.component';
 
 
 
@@ -22,7 +23,8 @@ import { PhotoEditorComponent } from './components/members/photo-editor/photo-ed
         ListsComponent,
         MemberCardComponent,
         MemberEditComponent,
-        PhotoEditorComponent
+        PhotoEditorComponent,
+        MemberMessagesComponent,
     ],
     imports: [
         CommonModule,

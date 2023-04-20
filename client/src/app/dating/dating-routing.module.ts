@@ -9,12 +9,13 @@ import { ListsComponent } from './components/lists/lists.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { AuthGuard } from '../core/guards/auth.guard';
 import { MemberEditComponent } from './components/members/member-edit/member-edit.component';
+import { MemberDetailedResolver } from '../core/resolvers/member-detailed.resolver';
 
 const routes: Routes = [
     { path: '', component: DatingComponent },
     { path: '', runGuardsAndResolvers: 'always', canActivate:[AuthGuard], data: {breadcrumb: 'Members'}, children: [
         { path: 'members', component: MemberListComponent },
-        { path: 'members/:username', component: MemberDetailComponent },
+        { path: 'members/:username', component: MemberDetailComponent, resolve: { member: MemberDetailedResolver } },
         { path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard] },
         { path: 'lists', component: ListsComponent },
         { path: 'messages', component: MessagesComponent },

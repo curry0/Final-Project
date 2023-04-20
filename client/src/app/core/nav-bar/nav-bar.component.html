@@ -13,7 +13,7 @@
                 <a dropdownToggle class="dropdown-toggle dropdown-toggle p-2" routerLink="/dating" routerLinkActive="active">Dating</a>
                 <ul *dropdownMenu class="dropdown-menu">
                     <li class="py-1">
-                        <a routerLink="/dating/members" class="dropdown-item">
+                        <a routerLink="/dating/members" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" class="dropdown-item">
                             <i class="fa fa-users me-3"></i> Members
                         </a>
                     </li>
