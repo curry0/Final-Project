@@ -9,7 +9,7 @@ namespace API.Extensions
             return user.FindFirstValue(ClaimTypes.Email);
         }
 
-        public static string GetUsernameClaim(this ClaimsPrincipal user)
+        public static string GetUsername(this ClaimsPrincipal user)
         {
             return user.FindFirstValue(ClaimTypes.Name);
         }

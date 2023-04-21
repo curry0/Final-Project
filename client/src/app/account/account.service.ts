@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Address, User } from '../shared/models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { PresenceService } from '../core/services/presence.service';
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +14,7 @@ export class AccountService {
     private currentUserSource = new ReplaySubject<User | null>(1);
     currentUser$ = this.currentUserSource.asObservable();
 
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router, private presenceService: PresenceService) { }
 
     loadCurrentUser(token: string | null) {
         if (token === null) {
@@ -55,6 +56,7 @@ export class AccountService {
         localStorage.removeItem('token');
         this.currentUserSource.next(null);
         this.router.navigateByUrl('/');
+        this.presenceService.stopHubConnection();
     }
 
     checkEmailExists(email: string) {
@@ -75,6 +77,7 @@ export class AccountService {
         Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
         localStorage.setItem('token', user.token);
         this.currentUserSource.next(user);
+        this.presenceService.createHubConnection(user);
     }
 
     getDecodedToken(token: string) {
