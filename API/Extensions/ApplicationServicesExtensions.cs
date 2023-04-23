@@ -3,6 +3,7 @@ using API.Errors;
 using API.Helpers;
 using API.Interfaces;
 using API.Services;
+using API.SignalR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
@@ -24,6 +25,7 @@ namespace API.Extensions
                 return ConnectionMultiplexer.Connect(options);
             });
             services.AddSignalR();
+            services.AddSingleton<PresenceTracker>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>();

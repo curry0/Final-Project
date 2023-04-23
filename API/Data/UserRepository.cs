@@ -71,7 +71,7 @@ namespace API.Data
             return await _context.Users
                 .Include(p => p.Photos)
                 .Include(p => p.Address)
-                .SingleOrDefaultAsync(x => x.UserName == username);
+                .SingleOrDefaultAsync(x => x.Email == username);
         }
 
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
