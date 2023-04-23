@@ -1,10 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../admin.service';
+import { Photo } from 'src/app/shared/models/photo';
 
 @Component({
-  selector: 'app-photo-management',
-  templateUrl: './photo-management.component.html',
-  styleUrls: ['./photo-management.component.scss']
+    selector: 'app-photo-management',
+    templateUrl: './photo-management.component.html',
+    styleUrls: ['./photo-management.component.scss']
 })
-export class PhotoManagementComponent {
+export class PhotoManagementComponent implements OnInit {
+    photos: Photo[] = [];
+
+    constructor(private adminService: AdminService) { }
+
+    ngOnInit(): void {
+        this.getPhotosForApproval();
+    }
+
+    approvePhoto(photoId: number) {
+        this.adminService.approvePhoto(photoId).subscribe({
+            next: () => this.photos.splice(this.photos.findIndex(p => p.id === photoId), 1)
+        })
+    }
+
+    rejectPhoto(photoId: number) {
+        this.adminService.rejectPhoto(photoId).subscribe({
+            next: () => this.photos.splice(this.photos.findIndex(p => p.id === photoId), 1)
+        })
+    }
+
+    private getPhotosForApproval() {
+        this.adminService.getPhotosForApproval().subscribe({
+            next: photos => this.photos = photos
+        })
+    }
 
 }
+
+

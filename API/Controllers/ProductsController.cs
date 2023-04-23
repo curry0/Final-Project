@@ -11,18 +11,17 @@ namespace API.Controllers
 {
     public class ProductsController : BaseApiController
     {
-        private readonly IProductRepository _productRepo;
         private readonly IMapper _mapper;
-        public ProductsController(IProductRepository productRepo, IMapper mapper)
+        private readonly IUnitOfWork _unitOfWork;
+        public ProductsController(IUnitOfWork unitOfWork, IMapper mapper)
         {
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _productRepo = productRepo;
-            
         }
         [HttpGet]
         public async Task<ActionResult<PagedList<ProductDisplayModel>>> GetProducts([FromQuery]ProductParams productParams)
         {
-            var products = await _productRepo.GetProductsAsync(productParams);
+            var products = await _unitOfWork.ProductRepository.GetProductsAsync(productParams);
 
             Response.AddPaginationHeader(new PaginationHeader(products.CurrentPage, products.PageSize, products.TotalCount, products.TotalPages));
             
@@ -32,7 +31,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDisplayModel>> GetProduct(int id)
         {
-            var product = await _productRepo.GetProductByIdAsync(id);
+            var product = await _unitOfWork.ProductRepository.GetProductByIdAsync(id);
 
             if (product == null) return NotFound(new ApiResponse(404));
 
@@ -42,13 +41,13 @@ namespace API.Controllers
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {
-            return Ok(await _productRepo.GetProductBrandsAsync());
+            return Ok(await _unitOfWork.ProductRepository.GetProductBrandsAsync());
         }
 
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {
-            return Ok(await _productRepo.GetProductTypesAsync());
+            return Ok(await _unitOfWork.ProductRepository.GetProductTypesAsync());
         }
     }
 }

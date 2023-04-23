@@ -20,6 +20,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TimeagoModule } from 'ngx-timeago';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
         TextInputComponent,
         StepperComponent,
         BasketSummaryComponent,
-        RolesModalComponent
+        RolesModalComponent,
+        ConfirmDialogComponent
     ],
     imports: [
         CommonModule,

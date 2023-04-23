@@ -27,13 +27,7 @@ namespace API.Extensions
             services.AddSignalR();
             services.AddSingleton<PresenceTracker>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IBasketRepository, BasketRepository>();
-            services.AddScoped<IDeliveryMethodRepository, DeliveryMethodRepository>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ILikesRepository, LikesRepository>();
-            services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IOrderService, OrderService>();

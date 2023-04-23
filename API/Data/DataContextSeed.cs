@@ -69,6 +69,7 @@ namespace API.Data
 
             foreach (var user in users) 
             {
+                user.Photos.First().IsApproved = true;
                 user.UserName = user.DisplayName.ToLower();
                 await userManager.CreateAsync(user, "P@ssw0rd");
                 await userManager.AddToRoleAsync(user, "Member");

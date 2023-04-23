@@ -5,6 +5,11 @@ namespace API.Interfaces
         IDeliveryMethodRepository DeliveryMethodRepository { get; }
         IOrderRepository OrderRepository { get; }
         IProductRepository ProductRepository { get; }
-        Task<int> Complete();
+        IUserRepository UserRepository { get; }
+        IMessageRepository MessageRepository { get; }
+        ILikesRepository LikesRepository { get; }
+        IPhotoRepository PhotoRepository { get; }
+        Task<bool> Complete();
+        bool HasChanges();
     }
 }

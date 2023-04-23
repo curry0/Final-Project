@@ -9,9 +9,10 @@ namespace API.Entities
     {
         public string Url { get; set; }
         public bool IsMain { get; set; }
+        public bool IsApproved { get; set; }
         public string PublicId { get; set; }
         [Required]
-        public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
+        public int AppUserId { get; set; }
     }
 }
