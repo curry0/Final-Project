@@ -33,7 +33,7 @@ namespace API.Controllers
         public async Task<ActionResult<PagedList<MemberDisplayModel>>> GetUsers([FromQuery] UserParams userParams)
         {
             var gender = await _unitOfWork.UserRepository.GetUserGender(User.GetEmailClaim());
-            userParams.CurrentUsername = User.GetEmailClaim();
+            userParams.CurrentEmail = User.GetEmailClaim();
             if (string.IsNullOrEmpty(userParams.Gender))
             {
                 userParams.Gender = gender == "male" ? "female" : "male";
@@ -43,11 +43,11 @@ namespace API.Controllers
             return Ok(users);
         }
 
-        [HttpGet("{username}")]
-        public async Task<ActionResult<MemberDisplayModel>> GetUser(string username)
+        [HttpGet("{email}")]
+        public async Task<ActionResult<MemberDisplayModel>> GetUser(string email)
         {
             var currentUsername = User.GetEmailClaim();
-            return await _unitOfWork.UserRepository.GetMemberAsync(username, isCurrentUser: currentUsername == username);
+            return await _unitOfWork.UserRepository.GetMemberAsync(email, isCurrentUser: currentUsername == email);
         }
 
         [HttpPut]

@@ -15,7 +15,7 @@ const routes: Routes = [
     { path: '', component: DatingComponent },
     { path: '', runGuardsAndResolvers: 'always', canActivate:[AuthGuard], data: {breadcrumb: 'Members'}, children: [
         { path: 'members', component: MemberListComponent },
-        { path: 'members/:username', component: MemberDetailComponent, resolve: { member: MemberDetailedResolver } },
+        { path: 'members/:email', component: MemberDetailComponent, resolve: { member: MemberDetailedResolver } },
         { path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard] },
         { path: 'lists', component: ListsComponent },
         { path: 'messages', component: MessagesComponent },

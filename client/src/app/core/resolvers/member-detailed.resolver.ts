@@ -11,6 +11,6 @@ export class MemberDetailedResolver {
 
     constructor(private datingService: DatingService) {}
     resolve(route: ActivatedRouteSnapshot): Observable<Member> {
-        return this.datingService.getMember(route.paramMap.get('username')!);
+        return this.datingService.getMember(route.paramMap.get('email')!);
     }
 }

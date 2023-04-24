@@ -7,7 +7,7 @@ namespace API.Helpers
 {
     public class UserParams : Params
     {
-        public string CurrentUsername { get; set; }
+        public string CurrentEmail { get; set; }
         public string Gender { get; set; }
         public int MinAge { get; set; }
         public int MaxAge { get; set; }

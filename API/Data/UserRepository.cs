@@ -19,10 +19,10 @@ namespace API.Data
             _context = context;
         }
 
-        public async Task<MemberDisplayModel> GetMemberAsync(string username, bool isCurrentUser)
+        public async Task<MemberDisplayModel> GetMemberAsync(string email, bool isCurrentUser)
         {
             var query = _context.Users
-                .Where(x => x.Email == username)
+                .Where(x => x.Email == email)
                 .ProjectTo<MemberDisplayModel>(_mapper.ConfigurationProvider)
                 .AsQueryable();
 
@@ -34,7 +34,7 @@ namespace API.Data
         {
             var query = _context.Users.AsQueryable();
 
-            query = query.Where(x => x.UserName != userParams.CurrentUsername);
+            query = query.Where(x => x.Email != userParams.CurrentEmail);
             query = query.Where(x => x.Gender == userParams.Gender);
 
             if (userParams.MinAge != 0)

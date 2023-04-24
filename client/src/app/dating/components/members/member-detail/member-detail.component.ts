@@ -9,6 +9,8 @@ import { Message } from 'src/app/shared/models/message';
 import { PresenceService } from 'src/app/core/services/presence.service';
 import { AccountService } from 'src/app/account/account.service';
 import { User } from 'src/app/shared/models/user';
+import { ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
 
 @Component({
     selector: 'app-member-detail',
@@ -25,7 +27,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     user?: User;
 
     constructor(private accountService: AccountService, private activatedRoute: ActivatedRoute, private messageService: MessageService,
-        public presenceService: PresenceService, private router: Router) {
+        public presenceService: PresenceService, private router: Router, private datingService: DatingService, private toastr: ToastrService) {
         this.accountService.currentUser$.subscribe({
             next: user => {
                 if (user) this.user = user;
@@ -57,6 +59,8 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.messageService.stopHubConnection();
+        // remove query params
+        this.activatedRoute.queryParams = of({});
     }
 
     loadMessages() {
@@ -93,6 +97,12 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
             })
         }
         return imageUrls;
+    }
+
+    addLike(member: Member) {
+        this.datingService.addLike(member.email).subscribe({
+            next: () => this.toastr.success('You have liked ' + member.displayName)
+        })
     }
 
 }
