@@ -15,11 +15,5 @@ namespace API.Extensions
 
             return await userManager.Users.Include(x => x.Address).SingleOrDefaultAsync(x => x.Email == email);
         }
-
-        public static async Task<AppUser> FindUserByEmail
-                        (this UserManager<AppUser> userManager, ClaimsPrincipal user)
-        {
-            return await userManager.Users.SingleOrDefaultAsync(x => x.Email == user.FindFirstValue(ClaimTypes.Email));
-        }
     }
 }

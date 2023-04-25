@@ -6,7 +6,6 @@ import { Address } from "./user";
 export interface Member {
     email: string;
     displayName: string;
-    userName: string;
     age: number;
     knownAs: string;
     created: string;

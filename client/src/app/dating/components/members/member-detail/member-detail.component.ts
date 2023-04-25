@@ -60,8 +60,15 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.messageService.stopHubConnection();
         // remove query params
-        this.activatedRoute.queryParams = of({});
+        this.router.navigate([], {
+            queryParams: {
+                tab: null
+            },
+            queryParamsHandling: 'merge',
+            replaceUrl: true
+        })
     }
+
 
     loadMessages() {
         if (this.member) {

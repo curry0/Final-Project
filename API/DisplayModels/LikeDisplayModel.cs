@@ -8,5 +8,6 @@ namespace API.DisplayModels
         public string DisplayName { get; set; }
         public string PhotoUrl { get; set; }
         public string City { get; set; }
+        public string Email { get; set; }
     }
 }
