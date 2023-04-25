@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="col-4">
+        <h1>Your Profile</h1>
+    </div>
+    <div class="col-8">
+        <div class="alert alert-info" *ngIf="memberForm.dirty">
+            <p><strong>Information: </strong>You have made changes. Any unsaved changes will be lost</p>
+        </div>
+    </div>
+    <div class="row" *ngIf="member">
+        <div class="col-4">
+            <div class="card">
+                <img src="{{member.photoUrl || '../../../../../assets/images/user.png'}}" alt="{{member.displayName}}"
+                    class="card-img-top img-thumbnail">
+                <div class="card-body">
+                    <div>
+                        <strong>Location:</strong>
+                        <p>{{member.address.city}}</p>
+                    </div>
+                    <div>
+                        <strong>Age:</strong>
+                        <p>{{member.age}}</p>
+                    </div>
+                    <div>
+                        <strong>Last Active:</strong>
+                        <p>{{member.lastActive | timeago}}</p>
+                    </div>
+                    <div>
+                        <strong>Member Since:</strong>
+                        <p>{{member.created | date: 'dd MMMM yyyy'}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button form="editForm" [disabled]="!memberForm.dirty" class="btn btn-success col-12">Save Changes</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-8">
+            <tabset class="member-tabset">
+                <tab heading="About {{member.displayName}}">
+                    <form [formGroup]="memberForm" (ngSubmit)="updateMember()" id="editForm">
+                        <h4 class="mt-2">Description</h4>
+                        <textarea class="form-control" formControlName="introduction" name="introduction"
+                            rows="6"></textarea>
+                        <h4 class="mt-2">Looking Form</h4>
+                        <textarea class="form-control" formControlName="lookingFor" name="lookingFor"
+                            rows="6"></textarea>
+                        <h4 class="mt-2">Interests</h4>
+                        <textarea class="form-control" formControlName="interests" name="interests" rows="6"></textarea>
+                        <h4 class="mt-2">Locations Details: </h4>
+                        <div class="d-flex flex-row align-items-center">
+                            <app-text-input [formControl]="memberForm.controls['city']"
+                                [label]="'City'"></app-text-input>
+                            <app-text-input [formControl]="memberForm.controls['country']"
+                                [label]="'Country'"></app-text-input>
+                        </div>
+
+                    </form>
+
+                </tab>
+                <tab heading="Edit Photos">
+                    <app-photo-editor [member]="member"></app-photo-editor>
+                </tab>
+
+            </tabset>
+        </div>
+    </div>
+</div>

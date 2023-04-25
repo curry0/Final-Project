@@ -2,6 +2,8 @@ using API.DisplayModels;
 using API.Entities;
 using API.Entities.Identity;
 using API.Entities.Order;
+using API.Extensions;
+using API.Models;
 using AutoMapper;
 
 namespace API.Helpers
@@ -33,6 +35,28 @@ namespace API.Helpers
                 .ForMember(dest => dest.PictureUrl, opt => opt.MapFrom(src => src.ItemOrdered.PictureUrl))
                 .ForMember(dest => dest.PictureUrl, opt => opt.MapFrom<OrderItemUrlResolver>());
 
+            CreateMap<AppUser, MemberDisplayModel>()
+                .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.Photos.FirstOrDefault(x => x.IsMain).Url))
+                .ForMember(dest => dest.Age, opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
+
+            CreateMap<Photo, PhotoDisplayModel>();
+
+            CreateMap<AppUser, MemberUpdateDisplayModel>()
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
+                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Address.Country))
+                .ReverseMap();
+
+            CreateMap<AppUser, RegisterSaveModel>()
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.Address.City))
+                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Address.Country))
+                .ReverseMap();
+            
+            CreateMap<Message, MessageDisplayModel>()
+                .ForMember(dest => dest.SenderPhotoUrl, opt => opt.MapFrom(src => src.Sender.Photos.FirstOrDefault(x => x.IsMain).Url))
+                .ForMember(dest => dest.RecipientPhotoUrl, opt => opt.MapFrom(src => src.Recipient.Photos.FirstOrDefault(x => x.IsMain).Url));
+
+            CreateMap<DateTime, DateTime>().ConvertUsing(x => DateTime.SpecifyKind(x, DateTimeKind.Utc));
+            CreateMap<DateTime?, DateTime?>().ConvertUsing(x => x.HasValue ? DateTime.SpecifyKind(x.Value, DateTimeKind.Utc) : null);
         }
     }
 }

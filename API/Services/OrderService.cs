@@ -51,7 +51,7 @@ namespace API.Services
 
             var result = await _unitOfWork.Complete();
 
-            if (result <= 0) return null;
+            if (!result) return null;
             
             return order;
         }

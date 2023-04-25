@@ -5,6 +5,37 @@
     <nav class="my-2 text-uppercase fs-4">
         <a class="p-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a class="p-2" routerLink="/shop" routerLinkActive="active">Shop</a>
+        <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+            <a *ngIf="(user.roles.includes('Admin') || user.roles.includes('Moderator'))"
+            class="p-2" routerLink="/admin" routerLinkActive="active">Admin</a>
+        </ng-container>
+
+
+        <ng-container *ngIf="(accountService.currentUser$ | async) === null">
+            <a class="p-2" routerLink="/dating" routerLinkActive="active">Dating</a>
+        </ng-container>
+        <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+            <div class="dropdown d-inline-block" dropdown>
+                <a dropdownToggle class="dropdown-toggle dropdown-toggle p-2" routerLink="/dating" routerLinkActive="active">Dating</a>
+                <ul *dropdownMenu class="dropdown-menu">
+                    <li class="py-1">
+                        <a routerLink="/dating/members" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" class="dropdown-item">
+                            <i class="fa fa-users me-3"></i> Members
+                        </a>
+                    </li>
+                    <li class="py-1">
+                        <a routerLink="/dating/lists" class="dropdown-item">
+                            <i class="fa fa-list me-3"></i> Lists
+                        </a>
+                    </li>
+                    <li class="py-1">
+                        <a routerLink="/dating/messages" class="dropdown-item">
+                            <i class="fa fa-comments-o me-3"></i> Messages
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </ng-container>
         <a class="p-2" routerLink="/test-error" routerLinkActive="active">Errors</a>
     </nav>
     <div class="d-flex align-items-center">
@@ -20,6 +51,7 @@
         </ng-container>
 
         <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+            <img src="{{user.photoUrl || '../../../../../assets/images/user.png'}}" alt="User's main photo">
             <div class="dropdown ms-3 me-5" style="cursor: pointer;" dropdown>
                 <a dropdownToggle class="dropdown-toggle">
                     <strong>Welcome {{user.displayName}}</strong>
@@ -33,6 +65,11 @@
                     <li class="py-1">
                         <a routerLink="/orders" class="dropdown-item">
                             <i class="fa fa-history me-3"></i> View Orders
+                        </a>
+                    </li>
+                    <li class="py-1">
+                        <a routerLink="/dating/member/edit" class="dropdown-item">
+                            <i class="fa fa-edit me-3"></i> Edit Profile
                         </a>
                     </li>
                     <div class="dropdown-divider"></div>

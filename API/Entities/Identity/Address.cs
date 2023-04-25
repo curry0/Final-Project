@@ -12,7 +12,7 @@ namespace API.Entities.Identity
         public string ZipCode { get; set; }
         public string Country { get; set; }
         [Required]
-        public string AppUserId { get; set; }
+        public int AppUserId { get; set; }
         public AppUser AppUser { get; set; }
     }
 }

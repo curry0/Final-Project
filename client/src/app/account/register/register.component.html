@@ -4,10 +4,29 @@
             <div class="text-center mb-4">
                 <h1 class="mb-3">Register</h1>
             </div>
+            <hr>
 
-            <app-text-input [formControl]="registerForm.controls['displayName']" [label]="'Display Name'"></app-text-input>
+            <div class="mb-3">
+                <label style="margin-right: 10px">I am a:</label>
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" value="male" formControlName="gender">Male
+                </label>
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input ms-3" value="female" formControlName="gender">Female
+                </label>
+            </div>
+            <app-text-input [formControl]="registerForm.controls['displayName']"
+                [label]="'Display Name'"></app-text-input>
             <app-text-input [formControl]="registerForm.controls['email']" [label]="'Email'"></app-text-input>
-            <app-text-input [formControl]="registerForm.controls['password']" [type]="'password'" [label]="'Password'"></app-text-input>
+            <app-text-input [formControl]="registerForm.controls['password']" [type]="'password'"
+                [label]="'Password'"></app-text-input>
+            <app-text-input [formControl]="registerForm.controls['confirmPassword']" [type]="'password'"
+                [label]="'Confirm Password'"></app-text-input>
+
+            <app-text-input [formControl]="registerForm.controls['dateOfBirth']" [label]="'Date Of Birth'"
+                [type]="'dateOnly'"></app-text-input>
+            <app-text-input [formControl]="registerForm.controls['city']" [label]="'City'"></app-text-input>
+            <app-text-input [formControl]="registerForm.controls['country']" [label]="'Country'"></app-text-input>
 
             <ul class="text-danger list-unstyled" *ngIf="errors">
                 <li *ngFor="let error of errors">
@@ -16,7 +35,8 @@
             </ul>
 
             <div class="d-grid">
-                <button [disabled]="registerForm.invalid" class="btn btn-lg btn-primary mt-3" type="submit">Sign Up</button>
+                <button [disabled]="registerForm.invalid" class="btn btn-lg btn-primary mt-3" type="submit">Sign
+                    Up</button>
             </div>
         </form>
     </div>

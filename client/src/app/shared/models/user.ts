@@ -2,6 +2,10 @@ export interface User {
     email: string;
     displayName: string;
     token: string;
+    photoUrl: string;
+    gender: string;
+    roles: string[];
+    username: string;
 }
 
 export interface Address {

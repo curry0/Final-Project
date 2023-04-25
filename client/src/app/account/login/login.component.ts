@@ -16,7 +16,7 @@ export class LoginComponent {
     returnUrl: string;
 
     constructor(private accountService: AccountService, private router: Router, private activatedRoute: ActivatedRoute) {
-        this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/shop'
+        this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/home'
     }
 
     onSubmit() {
