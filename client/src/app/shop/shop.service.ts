@@ -6,13 +6,14 @@ import { Type } from '../shared/models/type';
 import { ShopParams } from '../shared/models/shopParams';
 import { PaginatedResult } from '../shared/models/pagination';
 import { map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ShopService {
 
-    baseUrl = 'http://localhost:5000/api/'
+    baseUrl = environment.apiUrl;
     paginatedResult: PaginatedResult<Product[]> = new PaginatedResult<Product[]>;
 
     constructor(private http: HttpClient) { }
