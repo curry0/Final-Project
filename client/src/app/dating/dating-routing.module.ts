@@ -13,7 +13,7 @@ import { MemberDetailedResolver } from '../core/resolvers/member-detailed.resolv
 
 const routes: Routes = [
     { path: '', component: DatingComponent },
-    { path: '', runGuardsAndResolvers: 'always', canActivate:[AuthGuard], data: {breadcrumb: 'Members'}, children: [
+    { path: '', runGuardsAndResolvers: 'always', canActivate:[AuthGuard], children: [
         { path: 'members', component: MemberListComponent },
         { path: 'members/:email', component: MemberDetailComponent, resolve: { member: MemberDetailedResolver } },
         { path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesGuard] },

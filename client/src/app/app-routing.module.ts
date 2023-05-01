@@ -8,7 +8,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { AdminGuard } from './core/guards/admin.guard';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent, data: {breadcrumb: 'Home'}},
+    { path: '', component: HomeComponent},
     { path: 'test-error', component: TestErrorComponent},
     { path: 'not-found', component: NotFoundComponent},
     { path: 'server-error', component: ServerErrorComponent},
