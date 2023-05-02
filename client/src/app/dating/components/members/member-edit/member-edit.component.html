@@ -1,15 +1,18 @@
 <div class="container mt-3">
-    <div class="col-4">
-        <h1>Your Profile</h1>
-    </div>
-    <div class="col-8">
-        <div class="alert alert-info" *ngIf="memberForm.dirty">
-            <p><strong>Information: </strong>You have made changes. Any unsaved changes will be lost</p>
+    <div class="row">
+
+        <div class="col-3">
+            <h2>Your Profile</h2>
+        </div>
+        <div class="col-8">
+            <div class="alert alert-info" *ngIf="memberForm.dirty">
+                <p><strong>Information: </strong>You have made changes. Any unsaved changes will be lost</p>
+            </div>
         </div>
     </div>
     <div class="row" *ngIf="member">
-        <div class="col-4">
-            <div class="card">
+        <div class="col-3">
+            <div class="card" style="width: 18rem;">
                 <img src="{{member.photoUrl || '../../../../../assets/images/user.png'}}" alt="{{member.displayName}}"
                     class="card-img-top img-thumbnail">
                 <div class="card-body">
@@ -39,17 +42,17 @@
 
         <div class="col-8">
             <tabset class="member-tabset">
-                <tab heading="About {{member.displayName}}">
+                <tab heading="About">
                     <form [formGroup]="memberForm" (ngSubmit)="updateMember()" id="editForm">
-                        <h4 class="mt-2">Description</h4>
+                        <h5 class="mt-2">Description</h5>
                         <textarea class="form-control" formControlName="introduction" name="introduction"
-                            rows="6"></textarea>
-                        <h4 class="mt-2">Looking Form</h4>
+                            rows="3"></textarea>
+                        <h5 class="mt-2">Looking For</h5>
                         <textarea class="form-control" formControlName="lookingFor" name="lookingFor"
-                            rows="6"></textarea>
-                        <h4 class="mt-2">Interests</h4>
-                        <textarea class="form-control" formControlName="interests" name="interests" rows="6"></textarea>
-                        <h4 class="mt-2">Locations Details: </h4>
+                            rows="2"></textarea>
+                        <h5 class="mt-2">Interests</h5>
+                        <textarea class="form-control" formControlName="interests" name="interests" rows="2"></textarea>
+                        <h5 class="mt-2">Locations Details: </h5>
                         <div class="d-flex flex-row align-items-center">
                             <app-text-input [formControl]="memberForm.controls['city']"
                                 [label]="'City'"></app-text-input>

@@ -2,7 +2,7 @@
     class="d-flex flex-md-row align-items-center justify-content-between p-3 px-4 mb-3 bg-white border-bottom fixed-top shadow-sm">
     <img src="/assets/images/logo.png" alt="logo" class="logo" style="max-height: 70px;" routerLink="/">
 
-    <nav class="my-2 text-uppercase fs-4">
+    <nav class="my-2 ms-lg-5 text-uppercase fs-4">
         <a class="p-2" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a class="p-2" routerLink="/shop" routerLinkActive="active">Shop</a>
 
@@ -11,16 +11,19 @@
         </ng-container>
         <ng-container *ngIf="(accountService.currentUser$ | async) as user">
             <div class="dropdown d-inline-block" dropdown>
-                <a dropdownToggle class="dropdown-toggle dropdown-toggle p-2" routerLink="/dating" routerLinkActive="active">Dating</a>
+                <a dropdownToggle class="dropdown-toggle dropdown-toggle p-2"
+                    routerLinkActive="active" routerLink="/dating">
+                    Dating
+                </a>
                 <ul *dropdownMenu class="dropdown-menu">
                     <li class="py-1">
-                        <a routerLink="/dating/members" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" class="dropdown-item">
+                        <a routerLink="/dating/members" class="dropdown-item">
                             <i class="fa fa-users me-3"></i> Members
                         </a>
                     </li>
                     <li class="py-1">
                         <a routerLink="/dating/lists" class="dropdown-item">
-                            <i class="fa fa-list me-3"></i> Lists
+                            <i class="fa fa-list me-3"></i> Matches
                         </a>
                     </li>
                     <li class="py-1">
@@ -32,12 +35,13 @@
             </div>
         </ng-container>
 
+
         <ng-container *ngIf="(accountService.currentUser$ | async) as user">
             <a *ngIf="(user.roles.includes('Admin') || user.roles.includes('Moderator'))"
             class="p-2" routerLink="/admin" routerLinkActive="active">Admin</a>
         </ng-container>
     </nav>
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center ms-auto">
         <a routerLink="/basket" class="position-relative">
             <i class="fa fa-shopping-cart fa-2x me-5 text-dark"></i>
             <div *ngIf="(basketService.basketSource$ | async) as basket" class="cart-no">

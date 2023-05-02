@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
+import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
 import { AccountService } from 'src/app/account/account.service';
 import { DatingService } from 'src/app/dating/dating.service';
@@ -20,7 +21,7 @@ export class PhotoEditorComponent implements OnInit {
     baseUrl = environment.apiUrl;
     user?: User;
 
-    constructor(private accountService: AccountService, private datingService: DatingService) {
+    constructor(private accountService: AccountService, private datingService: DatingService, private toastr: ToastrService) {
         this.accountService.currentUser$.pipe(take(1)).subscribe({
             next: user => {
                 if (user) this.user = user;
@@ -38,6 +39,7 @@ export class PhotoEditorComponent implements OnInit {
                 if (this.user && this.member) {
                     this.user.photoUrl = photo.url;
                     this.accountService.setCurrentUser(this.user);
+                    this.toastr.success('Main photo updated successfully.');
                     this.member.photoUrl = photo.url;
                     this.member.photos.forEach(x => {
                         if (x.isMain) x.isMain = false;
@@ -53,6 +55,7 @@ export class PhotoEditorComponent implements OnInit {
             next: () => {
                 if (this.member) {
                     this.member.photos = this.member.photos.filter(x => x.id !== photoId);
+                    this.toastr.success('Photo deleted successfully.');
                 }
             }
         })
@@ -69,7 +72,7 @@ export class PhotoEditorComponent implements OnInit {
             isHTML5: true,
             allowedFileType: ['image'],
             removeAfterUpload: true,
-            autoUpload: false,
+            autoUpload: true,
             maxFileSize: 10 * 1024 * 1024,
         });
 
@@ -81,6 +84,7 @@ export class PhotoEditorComponent implements OnInit {
             if (response) {
                 const photo = JSON.parse(response);
                 this.member?.photos.push(photo);
+                this.toastr.success('Photo uploaded successfully. Please be patient until the admin approves it.');
                 if (photo.isMain && this.user && this.member) {
                     this.user.photoUrl = photo.url;
                     this.member.photoUrl = photo.url;
