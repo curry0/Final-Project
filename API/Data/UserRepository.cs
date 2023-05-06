@@ -48,7 +48,8 @@ namespace API.Data
                 var maxDob = DateTime.Today.AddYears(-userParams.MinAge).ToUniversalTime();
                 query = query.Where(x => x.DateOfBirth <= maxDob);
             }
-
+            if (!string.IsNullOrEmpty(userParams.Search))
+                query = query.Where(x => x.DisplayName.ToLower().Contains(userParams.Search.ToLower()));
 
             if (!userParams.OrderBy.IsNullOrEmpty())
             {

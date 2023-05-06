@@ -12,5 +12,11 @@ namespace API.Helpers
         public int MinAge { get; set; }
         public int MaxAge { get; set; }
         public string OrderBy { get; set; } = "lastActive";
+        private string _search;
+        public string Search 
+        { 
+            get => _search;
+            set => _search = value.ToLower();
+        }
     }
 }

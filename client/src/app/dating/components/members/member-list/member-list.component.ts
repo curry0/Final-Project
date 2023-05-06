@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { AccountService } from 'src/app/account/account.service';
 import { DatingService } from 'src/app/dating/dating.service';
@@ -14,6 +14,7 @@ import { UserParams } from 'src/app/shared/models/userParams';
 })
 export class MemberListComponent implements OnInit {
     // members$: Observable<Member[]> | undefined;
+    @ViewChild('search') searchTerm?: ElementRef;
     members: Member[] = [];
     pagination?: Pagination;
     userParams?: UserParams
@@ -30,6 +31,7 @@ export class MemberListComponent implements OnInit {
     loadMembers() {
         if (this.userParams) {
             this.datingService.setUserParams(this.userParams);
+            this.userParams.search = this.searchTerm?.nativeElement.value;
             this.datingService.getMembers(this.userParams).subscribe({
                 next: (response: any) => {
                     if (response.result && response.pagination) {
@@ -41,7 +43,17 @@ export class MemberListComponent implements OnInit {
         }
     }
 
+    onSearch() {
+        if (this.userParams)
+        {
+            this.userParams.search = this.searchTerm?.nativeElement.value;
+            this.userParams.pageNumber = 1;
+            this.loadMembers();
+        }
+    }
+
     resetFilters() {
+        if (this.searchTerm) this.searchTerm.nativeElement.value = '';
         this.userParams = this.datingService.resetUserParams();
         this.loadMembers();
 
