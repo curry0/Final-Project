@@ -16,10 +16,7 @@ export class ProductViewComponent implements OnInit {
     quantity = 1;
     quantityInBasket = 0;
 
-    constructor(private shopService: ShopService, private activatedRoute: ActivatedRoute,
-        private bcService: BreadcrumbService, private basketService: BasketService) {
-        this.bcService.set('@productView', ' ')
-    }
+    constructor(private shopService: ShopService, private activatedRoute: ActivatedRoute, private basketService: BasketService) {}
 
     ngOnInit(): void {
         this.getProduct();
@@ -30,7 +27,6 @@ export class ProductViewComponent implements OnInit {
         if (id) this.shopService.getProduct(+id).subscribe({
             next: product => {
                 this.product = product;
-                this.bcService.set('@productView', product.name);
                 this.basketService.basketSource$.pipe(take(1)).subscribe({
                     next: basket => {
                         const item = basket?.items.find(x => x.id === +id);

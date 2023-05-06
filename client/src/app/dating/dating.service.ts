@@ -53,6 +53,7 @@ export class DatingService {
 
         params = params.append('minAge', userParams.minAge);
         params = params.append('maxAge', userParams.maxAge);
+        if (userParams.search) params = params.append('search', userParams.search);
         params = params.append('gender', userParams.gender);
         params = params.append('orderBy', userParams.orderBy);
 
