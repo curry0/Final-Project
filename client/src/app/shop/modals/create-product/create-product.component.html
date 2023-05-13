@@ -1,0 +1,27 @@
+<div class="container">
+    <form [formGroup]="productsForm" (ngSubmit)="onSubmit()">
+        <app-text-input [formControl]="productsForm.controls['name']" [label]="'Name'"></app-text-input>
+        <app-text-input [formControl]="productsForm.controls['description']" [label]="'Description'"></app-text-input>
+        <app-text-input [formControl]="productsForm.controls['price']" [label]="'Price'"></app-text-input>
+        <div class="form-group">
+            <label for="productTypeId" class="form-label">Type:</label>
+            <select id="productTypeId" class="form-select" formControlName="productTypeId">
+                <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="productBrandId" class="form-label">Brand:</label>
+            <select id="productBrandId" class="form-select" formControlName="productBrandId">
+                <option *ngFor="let brand of brands" [value]="brand.id">{{ brand.name }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="picture">Picture</label>
+            <input type="file" class="form-control-file" id="pictureUrl" (change)="onPictureSelected($event)" required>
+        </div>
+        <div class="d-grid">
+            <button [disabled]="productsForm.invalid" class="btn btn-lg btn-primary mt-3" type="submit">Submit</button>
+        </div>
+
+    </form>
+</div>

@@ -51,4 +51,8 @@ export class ShopService {
     getTypes() {
         return this.http.get<Type[]>(this.baseUrl + 'products/types')
     }
+
+    createProduct(values: FormData) {
+        return this.http.post(this.baseUrl + 'products', values);
+    }
 }
