@@ -1,44 +1,14 @@
 {
-    "deploy.reloaded": {
-        "packages": [
-            {
-                "name": "Version 1.0.0",
-                "description": "Package version 1.0.0",
-
-                "files": [
-                    "publish/**"
-                ]
-            }
-        ],
-
-        "targets": [
-            {
-                "type": "sftp",
-                "name": "Linux",
-                "description": "SFTP folder",
-
-                "host": "161.35.220.31", "port": 22,
-                "user": "root", "password": "070424201R@k",
-
-                "dir": "/var/skinet",
-                "mappings": {
-                    "publish/**": "/"
-                }
-            }
-        ]
-    }
+    "editor.tabSize": 4,
+    "[javascript]": {
+        "editor.tabSize": 4
+    },
+    "[typescript]": {
+        "editor.tabSize": 4
+    },
+    "[json]": {
+        "editor.tabSize": 4
+    },
+    // This one forces the tab to be **space**
+    "editor.insertSpaces": true
 }
-
-//     "editor.tabSize": 4,
-//     "[javascript]": {
-//         "editor.tabSize": 4
-//     },
-//     "[typescript]": {
-//         "editor.tabSize": 4
-//     },
-//     "[json]": {
-//         "editor.tabSize": 4
-//     },
-//     // This one forces the tab to be **space**
-//     "editor.insertSpaces": true
-// }
