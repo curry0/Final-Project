@@ -13,6 +13,16 @@ namespace API.Data
             _context = context;
         }
 
+        public void AddProduct(Product product)
+        {
+            _context.Products.Add(product);
+        }
+
+        public async Task<ProductBrand> GetProductBrandByIdAsync(int id)
+        {
+            return await _context.ProductBrands.FindAsync(id);
+        }
+
         public async Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync()
         {
             return await _context.ProductBrands.ToListAsync();
@@ -47,6 +57,11 @@ namespace API.Data
             };
             
             return await PagedList<Product>.CreateAsync(query, productParams.PageNumber, productParams.PageSize);
+        }
+
+        public async Task<ProductType> GetProductTypeByIdAsync(int id)
+        {
+            return await _context.ProductTypes.FindAsync(id);
         }
 
         public async Task<IReadOnlyList<ProductType>> GetProductTypesAsync()

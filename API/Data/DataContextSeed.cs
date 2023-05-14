@@ -13,6 +13,11 @@ namespace API.Data
 {
     public class DataContextSeed
     {
+        public static async Task ClearConnection(DataContext context)
+        {
+            context.Connections.RemoveRange(context.Connections);
+            await context.SaveChangesAsync();
+        }
         public static async Task SeedAsync(DataContext context)
         {
             string basePath = Directory.GetCurrentDirectory();
@@ -49,12 +54,12 @@ namespace API.Data
 
         public static async Task SeedUsersAsync(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
-            string basePath = Directory.GetCurrentDirectory();
-            string userPath = Path.Combine(basePath, "Data", "SeedData", "UserSeedData.json");
-            if (await userManager.Users.AnyAsync()) return;
-            var userData = await File.ReadAllTextAsync(userPath);
-            var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
-            var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
+            // string basePath = Directory.GetCurrentDirectory();
+            // string userPath = Path.Combine(basePath, "Data", "SeedData", "UserSeedData.json");
+            // if (await userManager.Users.AnyAsync()) return;
+            // var userData = await File.ReadAllTextAsync(userPath);
+            // var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
+            // var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
             var roles = new List<AppRole>
             {
                 new AppRole{Name = "Member"},
@@ -67,13 +72,15 @@ namespace API.Data
                 await roleManager.CreateAsync(role);
             }
 
-            foreach (var user in users) 
-            {
-                user.Photos.First().IsApproved = true;
-                user.UserName = user.DisplayName.ToLower();
-                await userManager.CreateAsync(user, "P@ssw0rd");
-                await userManager.AddToRoleAsync(user, "Member");
-            }
+            // foreach (var user in users) 
+            // {
+            //     user.Photos.First().IsApproved = true;
+            //     user.UserName = user.DisplayName.ToLower();
+            //     user.Created = DateTime.SpecifyKind(user.Created, DateTimeKind.Utc);
+            //     user.LastActive = DateTime.SpecifyKind(user.LastActive, DateTimeKind.Utc);
+            //     await userManager.CreateAsync(user, "P@ssw0rd");
+            //     await userManager.AddToRoleAsync(user, "Member");
+            // }
 
             var admin = new AppUser
             {
@@ -81,7 +88,8 @@ namespace API.Data
                 DisplayName = "Admin",
                 UserName = "admin@test.com"
             };
-
+            admin.Created = DateTime.SpecifyKind(admin.Created, DateTimeKind.Utc);
+            admin.LastActive = DateTime.SpecifyKind(admin.LastActive, DateTimeKind.Utc);
             await userManager.CreateAsync(admin, "P@ssw0rd");
             await userManager.AddToRolesAsync(admin, new[] {"Admin", "Moderator"});
         }

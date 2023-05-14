@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container mt-3">
     <div class="row">
-        <div class="col-4">
+        <div class="col-3">
             <div class="card">
                 <img src="{{member.photoUrl || '../../../../../assets/images/user.png'}}" alt="{{member.displayName}}" class="card-img-top img-thumbnail">
             <div class="card-body">
@@ -38,13 +38,13 @@
         <div class="col-8">
             <tabset class="member-tabset" #memberTabs>
                 <tab heading="About {{member.displayName}}" (selectTab)="onTabActivated($event)">
-                    <h4>Description</h4>
+                    <h5>Description</h5>
                     <p>{{member.introduction}}</p>
-                    <h4>Looking For</h4>
+                    <h5>Looking For</h5>
                     <p>{{member.lookingFor}}</p>
                 </tab>
                 <tab heading="Interests" (selectTab)="onTabActivated($event)">
-                    <h4>Interests</h4>
+                    <h5>Interests</h5>
                     <p>{{member.interests}}</p>
                 </tab>
                 <tab heading="Photos" (selectTab)="onTabActivated($event)">

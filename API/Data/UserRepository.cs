@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using API.DisplayModels;
 using API.Entities.Identity;
 using API.Helpers;
@@ -39,14 +40,16 @@ namespace API.Data
 
             if (userParams.MinAge != 0)
             {
-                var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+                var minDob = DateTime.Today.AddYears(-userParams.MaxAge - 1).ToUniversalTime();
                 query = query.Where(x => x.DateOfBirth >= minDob);
             }
             if (userParams.MaxAge != 0)
             {
-                var maxDob = DateTime.Today.AddYears(-userParams.MinAge);
+                var maxDob = DateTime.Today.AddYears(-userParams.MinAge).ToUniversalTime();
                 query = query.Where(x => x.DateOfBirth <= maxDob);
             }
+            if (!string.IsNullOrEmpty(userParams.Search))
+                query = query.Where(x => x.DisplayName.ToLower().Contains(userParams.Search.ToLower()));
 
             if (!userParams.OrderBy.IsNullOrEmpty())
             {

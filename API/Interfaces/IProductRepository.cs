@@ -8,6 +8,9 @@ namespace API.Interfaces
         Task<Product> GetProductByIdAsync(int id);
         Task<PagedList<Product>> GetProductsAsync(ProductParams productParams);
         Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync();
+        Task<ProductBrand> GetProductBrandByIdAsync(int id);
         Task<IReadOnlyList<ProductType>> GetProductTypesAsync();
+        Task<ProductType> GetProductTypeByIdAsync(int id);
+        void AddProduct(Product product);
     }
 }

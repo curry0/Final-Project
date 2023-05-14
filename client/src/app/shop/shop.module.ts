@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProductItemComponent } from './product-item/product-item.component';
 import { ProductViewComponent } from './product-view/product-view.component';
 import { ShopRoutingModule } from './shop-routing.module';
+import { CreateProductComponent } from './modals/create-product/create-product.component';
 
 
 
@@ -12,7 +13,8 @@ import { ShopRoutingModule } from './shop-routing.module';
     declarations: [
         ShopComponent,
         ProductItemComponent,
-        ProductViewComponent
+        ProductViewComponent,
+        CreateProductComponent
     ],
     imports: [
         CommonModule,

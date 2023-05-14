@@ -20,9 +20,15 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.1" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.28.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.104" />
     <PackageReference Include="Stripe.net" Version="41.13.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.28.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Data\SeedData\**" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Content\**" CopyToPublishDirectory="PreserveNewest" />
+</ItemGroup>
 
 </Project>

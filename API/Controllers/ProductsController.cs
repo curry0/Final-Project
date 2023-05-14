@@ -49,5 +49,42 @@ namespace API.Controllers
         {
             return Ok(await _unitOfWork.ProductRepository.GetProductTypesAsync());
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ProductDisplayModel>> CreateProduct([FromForm] CreateProductDisplayModel model)
+        {
+            if (model.PictureUrl == null || model.PictureUrl.Length == 0)
+            {
+                return BadRequest(new ApiResponse(400, "No image file provided."));
+            }
+
+            // Generate a unique file name for the image
+            var uniqueFileName = Guid.NewGuid().ToString() + "_" + model.PictureUrl.FileName;
+
+            // Construct the file path where the image will be saved
+            var filePath = Path.Combine("Content", "images", "products", uniqueFileName);
+
+            // Save the image to the file path
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await model.PictureUrl.CopyToAsync(stream);
+            }
+
+            var product = new Product
+            {
+                Name = model.Name,
+                Description = model.Description,
+                Price = model.Price,
+                PictureUrl = Path.Combine("images", "products", uniqueFileName).Replace('\\', '/'),
+                ProductBrand = await _unitOfWork.ProductRepository.GetProductBrandByIdAsync(model.ProductBrandId),
+                ProductType = await _unitOfWork.ProductRepository.GetProductTypeByIdAsync(model.ProductTypeId),
+            };
+
+            _unitOfWork.ProductRepository.AddProduct(product);
+            if (await _unitOfWork.Complete()) return Ok(_mapper.Map<ProductDisplayModel>(product));
+            return BadRequest(new ApiResponse(400, "Problem creating product"));
+        }
+
+
     }
 }

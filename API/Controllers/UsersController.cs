@@ -88,7 +88,7 @@ namespace API.Controllers
             if (await _unitOfWork.Complete())
             {
                 return CreatedAtAction(nameof(GetUser), 
-                    new { username = user.UserName }, _mapper.Map<PhotoDisplayModel>(photo));
+                    new { email = user.Email }, _mapper.Map<PhotoDisplayModel>(photo));
             }
 
             return BadRequest("Problem adding photo");
