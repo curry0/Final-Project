@@ -36,7 +36,7 @@
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 250,
     "PictureUrl": "images/products/pants1.png",
-    "ProductTypeId": 4,
+    "ProductTypeId": 3,
     "ProductBrandId": 5
   },
   {
@@ -44,47 +44,23 @@
     "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
     "Price": 120,
     "PictureUrl": "images/products/pants2.png",
-    "ProductTypeId": 4,
+    "ProductTypeId": 3,
     "ProductBrandId": 5
   },
-  {
-    "Name": "Optimum Nutrition Whey Protein 900gr",
-    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 10,
-    "PictureUrl": "images/products/proteins1.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "Optimum Nutrition Whey Protein 2200gr",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 8,
-    "PictureUrl": "images/products/proteins3.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "Optimum Nutrition Whey Protein 1.7kg",
-    "Description": "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-    "Price": 15,
-    "PictureUrl": "images/products/proteins2.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 1
-  },
-  {
+{
     "Name": "Blue Code Gloves",
     "Description": "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
     "Price": 18,
     "PictureUrl": "images/products/glove-code1.png",
-    "ProductTypeId": 4,
-    "ProductBrandId": 3
+    "ProductTypeId": 3,
+    "ProductBrandId": 2
   },
   {
     "Name": "Gym Gray Top",
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 15,
     "PictureUrl": "images/products/shirt1.png",
-    "ProductTypeId": 7,
+    "ProductTypeId": 6,
     "ProductBrandId": 6
   },
   {
@@ -92,7 +68,7 @@
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.",
     "Price": 16,
     "PictureUrl": "images/products/shirt2.png",
-    "ProductTypeId": 7,
+    "ProductTypeId": 6,
     "ProductBrandId": 2
   },
   {
@@ -100,7 +76,7 @@
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 14,
     "PictureUrl": "images/products/shirt3.png",
-    "ProductTypeId": 7,
+    "ProductTypeId": 6,
     "ProductBrandId": 2
   },
   {
@@ -108,7 +84,7 @@
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 250,
     "PictureUrl": "images/products/shoes1.png",
-    "ProductTypeId": 7,
+    "ProductTypeId": 6,
     "ProductBrandId": 7
   },
   {
@@ -116,7 +92,7 @@
     "Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
     "Price": 189.99,
     "PictureUrl": "images/products/shorts1.png",
-    "ProductTypeId": 3,
+    "ProductTypeId": 2,
     "ProductBrandId": 8
   },
   {
@@ -124,7 +100,7 @@
     "Description": "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
     "Price": 199.99,
     "PictureUrl": "images/products/shorts2.png",
-    "ProductTypeId": 3,
+    "ProductTypeId": 2,
     "ProductBrandId": 2
   },
   {
@@ -132,7 +108,7 @@
     "Description": "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
     "Price": 150,
     "PictureUrl": "images/products/shorts3.png",
-    "ProductTypeId": 3,
+    "ProductTypeId": 2,
     "ProductBrandId": 8
   },
   {
@@ -140,15 +116,7 @@
     "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
     "Price": 180,
     "PictureUrl": "images/products/hoodie1.png",
-    "ProductTypeId": 6,
+    "ProductTypeId": 5,
     "ProductBrandId": 2
-  },
-  {
-    "Name": "Optimum Nutrition Suplement Package",
-    "Description": "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-    "Price": 180,
-    "PictureUrl": "images/products/package1.png",
-    "ProductTypeId": 2,
-    "ProductBrandId": 1
   }
 ]

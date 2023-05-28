@@ -5,26 +5,22 @@
   },
   {
     "Id": 2,
-    "Name": "Suplements"
-  },
-  {
-    "Id": 3,
     "Name": "Shorts"
   },
   {
-    "Id": 4,
+    "Id": 3,
     "Name": "Pants"
   },
   {
-    "Id": 5,
+    "Id": 4,
     "Name": "Shoes"
   },
   {
-    "Id": 6,
+    "Id": 5,
     "Name": "Hoodies"
   },
   {
-    "Id": 7,
+    "Id": 6,
     "Name": "Shirts"
   }
 ]
